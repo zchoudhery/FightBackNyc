@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>FightBack NYC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0E0E0E;--paper:#F6F3EE;--cream:#EDEAE3;
+  --red:#C0311A;--red-dark:#9B2614;
+  --gold:#B8913A;--muted:#7C7670;
+  --border:#DEDAD2;--white:#FFFFFF;
+  --fb:#111111;--fc:#1A1A1A;--fbd:#2C2C2C;--fi:#202020;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border);background:rgba(246,243,238,0.95);position:sticky;top:0;z-index:200;backdrop-filter:blur(10px)}
+@media(max-width:680px){nav{padding:14px 20px}}
+.logo{font-family:'DM Serif Display',serif;font-size:19px;letter-spacing:-0.01em}
+.logo span{color:var(--red)}
+.lang-wrap{position:relative;display:flex;align-items:center;gap:8px}
+#lang-flag{font-size:16px;pointer-events:none;line-height:1}
+.lang-sel{
+  background:var(--white);border:1px solid var(--border);border-radius:8px;
+  color:var(--ink);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;
+  padding:8px 32px 8px 12px;cursor:pointer;outline:none;
+  -webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%237C7670' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;min-width:148px;
+  transition:border-color .2s,box-shadow .2s;
+}
+.lang-sel:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(14,14,14,.08)}
+
+/* HERO */
+.hero{max-width:960px;margin:0 auto;padding:80px 48px 64px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:center}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding:48px 24px 40px;gap:40px}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:22px}
+.edot{width:6px;height:6px;background:var(--red);border-radius:50%;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(36px,5.5vw,56px);line-height:1.06;letter-spacing:-.025em;margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--red)}
+.hdesc{color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:30px;max-width:400px}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:var(--white);border:none;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;padding:14px 28px;border-radius:9px;cursor:pointer;transition:background .2s,transform .15s}
+.cta:hover{background:var(--red-dark)}
+.cta:active{transform:scale(.98)}
+.carr{display:inline-block;transition:transform .2s}
+.cta:hover .carr{transform:translateX(4px)}
+
+/* Stats panel */
+.panel{background:var(--cream);border:1px solid var(--border);border-radius:16px;padding:28px}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.scard{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 16px}
+.scard.full{grid-column:1/-1}
+.snum{font-family:'DM Serif Display',serif;font-size:30px;line-height:1;margin-bottom:5px}
+.snum .acc{color:var(--red)}
+.slbl{font-size:12px;color:var(--muted);line-height:1.4}
+.lawbadge{margin-top:16px;background:var(--ink);color:var(--paper);border-radius:10px;padding:16px 20px;font-size:13px;line-height:1.55}
+.lawbadge strong{display:block;font-size:13px;font-weight:600;margin-bottom:4px}
+
+/* HOW */
+.how{max-width:960px;margin:0 auto;padding:72px 48px;border-top:1px solid var(--border)}
+@media(max-width:680px){.how{padding:48px 24px}}
+.sec-eye{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:40px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:680px){.steps{grid-template-columns:1fr}}
+.step{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px 22px;position:relative;transition:border-color .2s,box-shadow .2s}
+.step:hover{border-color:#C0BCB4;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.sghost{font-family:'DM Serif Display',serif;font-size:48px;color:var(--cream);position:absolute;top:14px;right:18px;line-height:1;user-select:none}
+.sico{font-size:24px;margin-bottom:14px;display:block}
+.step h3{font-family:'DM Serif Display',serif;font-size:17px;margin-bottom:8px}
+.step p{font-size:14px;color:var(--muted);line-height:1.65}
+
+/* FORM */
+.fwrap{background:var(--fb);color:var(--paper);padding:80px 48px}
+@media(max-width:680px){.fwrap{padding:52px 24px}}
+.finner{max-width:740px;margin:0 auto}
+.ftitle{font-family:'DM Serif Display',serif;font-size:clamp(24px,4vw,36px);line-height:1.1;margin-bottom:10px;letter-spacing:-.015em}
+.fsub{color:#888;font-size:14px;margin-bottom:44px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:600px){.fgrid{grid-template-columns:1fr}}
+.full{grid-column:1/-1}
+.fg{display:flex;flex-direction:column;gap:7px}
+.flbl{font-size:13px;font-weight:500;color:#BEBAB4}
+.req{color:var(--red)}
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  background:var(--fi);border:1px solid var(--fbd);border-radius:9px;
+  color:var(--paper);font-family:'DM Sans',sans-serif;font-size:15px;
+  padding:13px 16px;width:100%;outline:none;-webkit-appearance:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+input:focus,select:focus,textarea:focus{border-color:#666;box-shadow:0 0 0 3px rgba(184,145,58,.12)}
+input::placeholder,textarea::placeholder{color:#444}
+select option{background:#1A1A1A}
+textarea{resize:vertical;min-height:108px;line-height:1.65}
+.uzone{border:2px dashed var(--fbd);border-radius:12px;padding:30px 20px;text-align:center;cursor:pointer;position:relative;transition:border-color .2s,background .2s}
+.uzone:hover{border-color:#555;background:#171717}
+.uzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:none;background:none}
+.uico{font-size:28px;display:block;margin-bottom:10px}
+.uzone strong{display:block;font-size:14px;margin-bottom:4px}
+.uzone small{font-size:12px;color:#555}
+#fname{font-size:13px;color:var(--gold);margin-top:8px;min-height:16px}
+.prow{display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--fc);border:1px solid var(--fbd);border-radius:12px;padding:20px 26px;margin-top:8px}
+@media(max-width:500px){.prow{flex-direction:column;align-items:flex-start;gap:12px}}
+.ptxt strong{font-size:15px}
+.ptxt p{font-size:13px;color:#666;margin-top:3px}
+.price{font-family:'DM Serif Display',serif;font-size:44px;color:var(--gold);line-height:1}
+.pnote{font-size:12px;color:#555;margin-top:2px;text-align:right}
+.sbtn{width:100%;background:var(--red);color:var(--white);border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;padding:17px;cursor:pointer;margin-top:4px;letter-spacing:.01em;transition:background .2s,transform .15s}
+.sbtn:hover{background:var(--red-dark)}
+.sbtn:active{transform:scale(.99)}
+.sbtn:disabled{opacity:.45;cursor:not-allowed}
+.trow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;justify-content:center}
+.chip{font-size:12px;color:#666;border:1px solid #262626;border-radius:20px;padding:5px 14px;display:flex;align-items:center;gap:6px}
+.chip::before{content:'✓';color:var(--gold);font-weight:700}
+.ebar{background:#2A0808;border:1px solid #5A1010;border-radius:8px;color:#FF9999;font-size:14px;padding:13px 18px;margin-top:16px;display:none}
+.lstate{display:none;text-align:center;padding:52px 0}
+.spin{width:42px;height:42px;border:3px solid #282828;border-top-color:var(--gold);border-radius:50%;margin:0 auto 16px;animation:spin .75s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lstate p{color:#666;font-size:14px}
+
+/* OUTPUT */
+.owrap{max-width:840px;margin:0 auto;padding:72px 48px;display:none}
+@media(max-width:680px){.owrap{padding:44px 24px}}
+.ohd{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+.ohd h2{font-family:'DM Serif Display',serif;font-size:26px}
+.oacts{display:flex;gap:10px}
+.bghost{background:none;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:10px 18px;cursor:pointer;color:var(--ink);transition:background .2s,border-color .2s}
+.bghost:hover{background:var(--cream);border-color:#C0BCB4}
+.bsolid{background:var(--ink);border:1px solid var(--ink);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:10px 18px;cursor:pointer;color:var(--white);transition:background .2s}
+.bsolid:hover{background:#333}
+.lcard{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.lbar{background:var(--cream);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.lbar span{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.06em}
+.cipbtn{background:none;border:1px solid var(--border);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;padding:5px 12px;cursor:pointer;color:var(--muted);transition:all .2s}
+.cipbtn:hover{border-color:var(--ink);color:var(--ink)}
+#ltext{padding:36px 40px;font-family:'Georgia',serif;font-size:14px;line-height:1.9;color:#2A2A2A;white-space:pre-wrap;max-height:580px;overflow-y:auto}
+@media(max-width:600px){#ltext{padding:24px 20px;font-size:13px}}
+.rrow{text-align:center;padding:22px;border-top:1px solid var(--border)}
+.rbtn{background:none;border:none;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--muted);text-decoration:underline;cursor:pointer}
+.rbtn:hover{color:var(--ink)}
+
+footer{border-top:1px solid var(--border);text-align:center;padding:32px 24px;font-size:13px;color:var(--muted)}
+footer strong{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">FightBack<span>NYC</span></div>
+  <div class="lang-wrap">
+    <span id="lang-flag">🇺🇸</span>
+    <select class="lang-sel" id="lsel" onchange="setLang(this.value)">
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="ru">Русский</option>
+      <option value="hi">हिन्दी</option>
+      <option value="bn">বাংলা</option>
+      <option value="ne">नेपाली</option>
+      <option value="uz">O'zbekcha</option>
+    </select>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow"><span class="edot"></span><span data-i="badge">NYC Local Law 34 · 2026</span></div>
+    <h1><span data-i="h1a">They took your</span> <em data-i="h1b">account.</em><br><span data-i="h1c">Take it back.</span></h1>
+    <p class="hdesc" data-i="hdesc">Generate a legally aggressive appeal letter in under 2 minutes — based on NYC law that fines platforms $2,500 per violation. No lawyer needed.</p>
+    <button class="cta" onclick="document.getElementById('fa').scrollIntoView({behavior:'smooth'})">
+      <span data-i="cta">Start my appeal</span><span class="carr">→</span>
+    </button>
+  </div>
+  <div>
+    <div class="panel">
+      <div class="sgrid">
+        <div class="scard"><div class="snum"><span class="acc">$2,500</span></div><div class="slbl" data-i="s1">Fine per wrongful deactivation</div></div>
+        <div class="scard"><div class="snum">72<span class="acc">hr</span></div><div class="slbl" data-i="s2">Notice the platform must give you</div></div>
+        <div class="scard full"><div class="snum">100<span class="acc">%</span></div><div class="slbl" data-i="s3">Back pay rights if deactivation was wrongful</div></div>
+      </div>
+      <div class="lawbadge">
+        <strong data-i="lt">NYC Local Law 34 of 2026</strong>
+        <span data-i="ld">Protects app-based delivery workers from sudden, unexplained account deactivations.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="sec-eye" data-i="how">How it works</div>
+  <div class="steps">
+    <div class="step"><span class="sghost">1</span><span class="sico">📝</span><h3 data-i="s1t">Tell us what happened</h3><p data-i="s1d">Fill in your basic info and describe the deactivation in your own words. Takes about 2 minutes.</p></div>
+    <div class="step"><span class="sghost">2</span><span class="sico">📸</span><h3 data-i="s2t">Upload your screenshot</h3><p data-i="s2d">Optional but powerful. We read the exact error message and use it as evidence against the platform.</p></div>
+    <div class="step"><span class="sghost">3</span><span class="sico">⚖️</span><h3 data-i="s3t">Get your legal letter</h3><p data-i="s3d">A formal appeal letter citing NYC law, demanding reinstatement and back pay. Ready to send.</p></div>
+  </div>
+</section>
+
+<div class="fwrap" id="fa">
+  <div class="finner">
+    <h2 class="ftitle" data-i="ftitle">Build your appeal letter</h2>
+    <p class="fsub" data-i="fsub">All fields marked * are required. Your information is never stored.</p>
+    <div class="fgrid">
+      <div class="fg">
+        <label class="flbl"><span data-i="ln">Full name</span> <span class="req">*</span></label>
+        <input type="text" id="fn" placeholder="Maria Rodriguez"/>
+      </div>
+      <div class="fg">
+        <label class="flbl"><span data-i="lp">Platform</span> <span class="req">*</span></label>
+        <select id="fp">
+          <option value="" data-i="sp">Select platform</option>
+          <option>DoorDash</option><option>Uber Eats</option><option>Grubhub</option>
+          <option>Instacart</option><option>Relay</option>
+          <option data-i="so">Other</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label class="flbl"><span data-i="le">Email address</span> <span class="req">*</span></label>
+        <input type="email" id="fe" placeholder="you@email.com"/>
+      </div>
+      <div class="fg">
+        <label class="flbl" data-i="lph">Phone (optional)</label>
+        <input type="tel" id="fph" placeholder="(929) 555-0101"/>
+      </div>
+      <div class="fg">
+        <label class="flbl"><span data-i="lid">Courier / Account ID</span> <span class="req">*</span></label>
+        <input type="text" id="fid" placeholder="DD-8472910"/>
+      </div>
+      <div class="fg">
+        <label class="flbl"><span data-i="ldt">Deactivation date</span> <span class="req">*</span></label>
+        <input type="date" id="fdt"/>
+      </div>
+      <div class="fg full">
+        <label class="flbl"><span data-i="lst">What happened — your side</span> <span class="req">*</span></label>
+        <textarea id="fst" data-ph="phst" placeholder="e.g. My account was locked with no warning. I have a 4.9 star rating and 1,400+ deliveries. I never received any prior warnings. The message just said 'you violated our terms' with nothing specific…"></textarea>
+      </div>
+      <div class="fg full">
+        <label class="flbl" data-i="lup">Screenshot of deactivation notice (optional but recommended)</label>
+        <div class="uzone">
+          <input type="file" id="fimg" accept="image/*" onchange="handleUp(this)"/>
+          <span class="uico">📎</span>
+          <strong data-i="ut">Tap to upload screenshot</strong>
+          <small data-i="us">JPG, PNG, HEIC — any screenshot of the ban screen</small>
+          <div id="fname"></div>
+        </div>
+      </div>
+    </div>
+    <div class="prow" style="margin-top:32px">
+      <div class="ptxt"><strong data-i="prt">Instant Legal Appeal Letter</strong><p data-i="prs">Formatted, legally cited, ready to send</p></div>
+      <div><div class="price">$15</div><div class="pnote" data-i="prn">one-time</div></div>
+    </div>
+    <button class="sbtn" id="sbtn" onclick="gen()" style="margin-top:18px"><span data-i="bgen">Generate my appeal letter →</span></button>
+    <div class="trow">
+      <div class="chip"><span data-i="t1">References NYC Local Law 34</span></div>
+      <div class="chip"><span data-i="t2">Demands back pay</span></div>
+      <div class="chip"><span data-i="t3">DCWP complaint language</span></div>
+      <div class="chip"><span data-i="t4">Your info stays private</span></div>
+    </div>
+    <div class="ebar" id="ebar"></div>
+    <div class="lstate" id="ls"><div class="spin"></div><p data-i="loading">Analyzing your case and writing your letter…</p></div>
+  </div>
+</div>
+
+<div class="owrap" id="ow">
+  <div class="ohd">
+    <h2 data-i="otitle">Your appeal letter is ready</h2>
+    <div class="oacts">
+      <button class="bghost" onclick="dlLetter()" data-i="bdl">Download .txt</button>
+      <button class="bsolid" onclick="cpLetter()" id="bcopy" data-i="bcopy">Copy letter</button>
+    </div>
+  </div>
+  <div class="lcard">
+    <div class="lbar">
+      <span data-i="lbar">⚖ FORMAL APPEAL — NYC LOCAL LAW 34 / 2026</span>
+      <button class="cipbtn" onclick="cpLetter()" id="bcopysm" data-i="bcopysm">Copy</button>
+    </div>
+    <div id="ltext"></div>
+    <div class="rrow"><button class="rbtn" onclick="resetF()" data-i="brestart">Start a new letter</button></div>
+  </div>
+</div>
+
+<footer><strong>FightBack NYC</strong> — <span data-i="foot">Informational tool based on NYC Local Law 34 of 2026. Not legal advice. For complex disputes, consult a licensed labor attorney.</span></footer>
+
+<script>
+const FLAGS={en:'🇺🇸',es:'🇪🇸',ru:'🇷🇺',hi:'🇮🇳',bn:'🇧🇩',ne:'🇳🇵',uz:'🇺🇿'};
+const T={
+en:{badge:'NYC Local Law 34 · 2026',h1a:'They took your',h1b:'account.',h1c:'Take it back.',hdesc:'Generate a legally aggressive appeal letter in under 2 minutes — based on NYC law that fines platforms $2,500 per violation. No lawyer needed.',cta:'Start my appeal',s1:'Fine per wrongful deactivation',s2:'Notice the platform must give you',s3:'Back pay rights if deactivation was wrongful',lt:'NYC Local Law 34 of 2026',ld:'Protects app-based delivery workers from sudden, unexplained account deactivations.',how:'How it works',s1t:'Tell us what happened',s1d:'Fill in your basic info and describe the deactivation in your own words. Takes about 2 minutes.',s2t:'Upload your screenshot',s2d:'Optional but powerful. We read the exact error message and use it as evidence against the platform.',s3t:'Get your legal letter',s3d:'A formal appeal letter citing NYC law, demanding reinstatement and back pay. Ready to send.',ftitle:'Build your appeal letter',fsub:'All fields marked * are required. Your information is never stored.',ln:'Full name',lp:'Platform',le:'Email address',lph:'Phone (optional)',lid:'Courier / Account ID',ldt:'Deactivation date',lst:'What happened — your side',lup:'Screenshot of deactivation notice (optional but recommended)',sp:'Select platform',so:'Other',phst:"e.g. My account was locked with no warning. I have a 4.9 star rating and 1,400+ deliveries. I never received any prior warnings. The message just said 'you violated our terms' with nothing specific…",ut:'Tap to upload screenshot',us:'JPG, PNG, HEIC — any screenshot of the ban screen',prt:'Instant Legal Appeal Letter',prs:'Formatted, legally cited, ready to send',prn:'one-time',bgen:'Generate my appeal letter →',t1:'References NYC Local Law 34',t2:'Demands back pay',t3:'DCWP complaint language',t4:'Your info stays private',loading:'Analyzing your case and writing your letter…',otitle:'Your appeal letter is ready',bdl:'Download .txt',bcopy:'Copy letter',bcopysm:'Copy',lbar:'⚖ FORMAL APPEAL — NYC LOCAL LAW 34 / 2026',brestart:'Start a new letter',foot:'Informational tool based on NYC Local Law 34 of 2026. Not legal advice. For complex disputes, consult a licensed labor attorney.',ereq:'Please fill in all required fields (marked *).',eapi:'Something went wrong. Please try again.',copied:'Copied!'},
+es:{badge:'NYC Ley Local 34 · 2026',h1a:'Te quitaron tu',h1b:'cuenta.',h1c:'Recupérala.',hdesc:'Genera una carta de apelación legal en menos de 2 minutos — basada en la ley de NYC que multa a las plataformas $2,500 por violación. Sin abogado.',cta:'Iniciar mi apelación',s1:'Multa por desactivación injustificada',s2:'Aviso que la plataforma debe darte',s3:'Pago retroactivo si la desactivación fue injusta',lt:'NYC Ley Local 34 de 2026',ld:'Protege a los repartidores de desactivaciones repentinas e inexplicadas.',how:'Cómo funciona',s1t:'Cuéntanos qué pasó',s1d:'Completa tu información y describe la desactivación. Toma 2 minutos.',s2t:'Sube tu captura de pantalla',s2d:'Opcional pero poderoso. Usamos el mensaje exacto como evidencia contra la plataforma.',s3t:'Recibe tu carta legal',s3d:'Carta formal citando la ley de NYC, exigiendo reactivación y pago retroactivo.',ftitle:'Crea tu carta de apelación',fsub:'Los campos con * son obligatorios. Tu información nunca se almacena.',ln:'Nombre completo',lp:'Plataforma',le:'Correo electrónico',lph:'Teléfono (opcional)',lid:'ID de courier / cuenta',ldt:'Fecha de desactivación',lst:'Qué pasó — tu versión',lup:'Captura de la desactivación (opcional pero recomendada)',sp:'Selecciona plataforma',so:'Otra',phst:"Ej. Me bloquearon la cuenta sin previo aviso. Tengo calificación 4.9 y más de 1,400 entregas. Nunca recibí advertencias. El mensaje solo decía 'violaste nuestros términos' sin detallar nada…",ut:'Toca para subir captura',us:'JPG, PNG, HEIC — cualquier captura del bloqueo',prt:'Carta de Apelación Legal Instantánea',prs:'Con referencias legales, lista para enviar',prn:'pago único',bgen:'Generar mi carta de apelación →',t1:'Cita la Ley Local 34',t2:'Exige pago retroactivo',t3:'Lenguaje de queja al DCWP',t4:'Tu información es privada',loading:'Analizando tu caso y redactando tu carta…',otitle:'Tu carta de apelación está lista',bdl:'Descargar .txt',bcopy:'Copiar carta',bcopysm:'Copiar',lbar:'⚖ APELACIÓN FORMAL — NYC LEY LOCAL 34 / 2026',brestart:'Crear una nueva carta',foot:'Herramienta informativa basada en la Ley Local 34 de NYC de 2026. No es asesoramiento legal.',ereq:'Por favor completa todos los campos obligatorios (marcados con *).',eapi:'Algo salió mal. Por favor intenta de nuevo.',copied:'¡Copiado!'},
+ru:{badge:'NYC Закон 34 · 2026',h1a:'Они заблокировали',h1b:'ваш аккаунт.',h1c:'Верните его.',hdesc:'Создайте юридическое письмо-апелляцию менее чем за 2 минуты — по закону Нью-Йорка, по которому платформам грозит штраф $2 500 за нарушение.',cta:'Начать апелляцию',s1:'Штраф за незаконную блокировку',s2:'Срок уведомления от платформы',s3:'Право на компенсацию при незаконной блокировке',lt:'NYC Местный закон 34, 2026',ld:'Защищает курьеров от внезапной и необоснованной деактивации аккаунта.',how:'Как это работает',s1t:'Расскажите, что случилось',s1d:'Заполните основную информацию и опишите ситуацию своими словами. Займёт около 2 минут.',s2t:'Загрузите скриншот',s2d:'Необязательно, но важно. Мы читаем точный текст ошибки и используем его как доказательство.',s3t:'Получите юридическое письмо',s3d:'Официальное письмо-апелляция со ссылкой на закон, с требованием восстановления и выплаты.',ftitle:'Создать письмо-апелляцию',fsub:'Поля со * обязательны. Ваши данные не сохраняются.',ln:'Полное имя',lp:'Платформа',le:'Электронная почта',lph:'Телефон (необязательно)',lid:'ID курьера / аккаунта',ldt:'Дата деактивации',lst:'Что произошло — ваша версия',lup:'Скриншот уведомления о деактивации (необязательно, но рекомендуется)',sp:'Выберите платформу',so:'Другое',phst:'Напр.: Мой аккаунт заблокировали без предупреждения. У меня рейтинг 4,9 и более 1 400 доставок. Никаких предупреждений не было. Сообщение просто гласило «вы нарушили условия» без конкретики…',ut:'Нажмите, чтобы загрузить скриншот',us:'JPG, PNG, HEIC — любой скриншот экрана блокировки',prt:'Мгновенное юридическое письмо',prs:'Оформлено, со ссылками на законы, готово к отправке',prn:'разовая оплата',bgen:'Создать моё письмо-апелляцию →',t1:'Ссылка на NYC Закон 34',t2:'Требование компенсации',t3:'Язык жалобы в DCWP',t4:'Ваши данные конфиденциальны',loading:'Анализируем ваше дело и составляем письмо…',otitle:'Ваше письмо-апелляция готово',bdl:'Скачать .txt',bcopy:'Копировать письмо',bcopysm:'Копировать',lbar:'⚖ ОФИЦИАЛЬНАЯ АПЕЛЛЯЦИЯ — NYC ЗАКОН 34 / 2026',brestart:'Создать новое письмо',foot:'Информационный инструмент на основе NYC Закона 34 от 2026. Не является юридической консультацией.',ereq:'Пожалуйста, заполните все обязательные поля (отмеченные *).',eapi:'Что-то пошло не так. Пожалуйста, попробуйте ещё раз.',copied:'Скопировано!'},
+hi:{badge:'NYC स्थानीय कानून 34 · 2026',h1a:'उन्होंने आपका',h1b:'अकाउंट बंद किया।',h1c:'वापस लें।',hdesc:'2 मिनट में कानूनी अपील पत्र बनाएं — NYC कानून के तहत जो प्लेटफॉर्म को $2,500 जुर्माना लगाता है। वकील की जरूरत नहीं।',cta:'अपनी अपील शुरू करें',s1:'गलत निष्क्रियकरण पर जुर्माना',s2:'प्लेटफॉर्म को देनी होगी नोटिस',s3:'गलत ब्लॉकिंग पर वापस वेतन का अधिकार',lt:'NYC स्थानीय कानून 34, 2026',ld:'ऐप-आधारित डिलीवरी वर्कर्स को अचानक, अस्पष्ट अकाउंट निष्क्रियकरण से बचाता है।',how:'यह कैसे काम करता है',s1t:'बताएं क्या हुआ',s1d:'अपनी बेसिक जानकारी भरें और निष्क्रियकरण के बारे में बताएं। लगभग 2 मिनट।',s2t:'स्क्रीनशॉट अपलोड करें',s2d:'वैकल्पिक लेकिन शक्तिशाली। हम सटीक एरर मैसेज पढ़ते हैं और सबूत के रूप में उपयोग करते हैं।',s3t:'कानूनी पत्र प्राप्त करें',s3d:'NYC कानून का हवाला देते हुए औपचारिक अपील पत्र, पुनर्स्थापना और बकाया वेतन की मांग के साथ।',ftitle:'अपना अपील पत्र बनाएं',fsub:'* से चिह्नित सभी फ़ील्ड आवश्यक हैं। आपकी जानकारी कभी संग्रहीत नहीं की जाती।',ln:'पूरा नाम',lp:'प्लेटफॉर्म',le:'ईमेल पता',lph:'फ़ोन (वैकल्पिक)',lid:'कूरियर / अकाउंट ID',ldt:'निष्क्रियकरण की तारीख',lst:'क्या हुआ — आपका पक्ष',lup:'निष्क्रियकरण का स्क्रीनशॉट (वैकल्पिक लेकिन अनुशंसित)',sp:'प्लेटफॉर्म चुनें',so:'अन्य',phst:"उदा. बिना किसी चेतावनी के मेरा अकाउंट बंद कर दिया गया। मेरी 4.9 स्टार रेटिंग है और 1,400+ डिलीवरी हैं। कोई पूर्व चेतावनी नहीं मिली। संदेश में केवल लिखा था 'आपने नियमों का उल्लंघन किया' — कोई विशेष कारण नहीं…",ut:'स्क्रीनशॉट अपलोड करने के लिए टैप करें',us:'JPG, PNG, HEIC — बैन स्क्रीन का कोई भी स्क्रीनशॉट',prt:'तुरंत कानूनी अपील पत्र',prs:'फॉर्मेट किया हुआ, कानूनी संदर्भ सहित, भेजने के लिए तैयार',prn:'एकमुश्त',bgen:'मेरा अपील पत्र बनाएं →',t1:'NYC LL 34 का संदर्भ',t2:'बकाया वेतन की मांग',t3:'DCWP शिकायत भाषा',t4:'आपकी जानकारी निजी रहती है',loading:'आपके मामले का विश्लेषण और पत्र लिखा जा रहा है…',otitle:'आपका अपील पत्र तैयार है',bdl:'.txt डाउनलोड करें',bcopy:'पत्र कॉपी करें',bcopysm:'कॉपी',lbar:'⚖ औपचारिक अपील — NYC LL 34 / 2026',brestart:'नया पत्र शुरू करें',foot:'NYC स्थानीय कानून 34, 2026 पर आधारित सूचनात्मक उपकरण। कानूनी सलाह नहीं।',ereq:'कृपया सभी आवश्यक फ़ील्ड (* से चिह्नित) भरें।',eapi:'कुछ गलत हो गया। कृपया फिर से प्रयास करें।',copied:'कॉपी हो गया!'},
+bn:{badge:'NYC স্থানীয় আইন ৩৪ · ২০২৬',h1a:'তারা আপনার',h1b:'অ্যাকাউন্ট বন্ধ করেছে।',h1c:'ফিরিয়ে নিন।',hdesc:'২ মিনিটের মধ্যে একটি আইনি আপিল চিঠি তৈরি করুন — NYC আইনের ভিত্তিতে যা প্রতিটি লঙ্ঘনে $২,৫০০ জরিমানা করে। আইনজীবীর প্রয়োজন নেই।',cta:'আমার আপিল শুরু করুন',s1:'ভুল নিষ্ক্রিয়করণে জরিমানা',s2:'প্ল্যাটফর্মকে দিতে হবে নোটিশ',s3:'ভুল ব্লকিংয়ে বকেয়া বেতনের অধিকার',lt:'NYC স্থানীয় আইন ৩৪, ২০২৬',ld:'অ্যাপ-ভিত্তিক ডেলিভারি কর্মীদের হঠাৎ, অস্পষ্ট অ্যাকাউন্ট নিষ্ক্রিয়করণ থেকে রক্ষা করে।',how:'এটি কীভাবে কাজ করে',s1t:'কী হয়েছে জানান',s1d:'আপনার মূল তথ্য পূরণ করুন এবং নিজের ভাষায় নিষ্ক্রিয়করণ বর্ণনা করুন। প্রায় ২ মিনিট লাগে।',s2t:'স্ক্রিনশট আপলোড করুন',s2d:'ঐচ্ছিক কিন্তু শক্তিশালী। আমরা সঠিক ত্রুটি বার্তাটি পড়ি এবং প্রমাণ হিসেবে ব্যবহার করি।',s3t:'আইনি চিঠি পান',s3d:'NYC আইন উদ্ধৃত করে আনুষ্ঠানিক আপিল চিঠি, পুনর্বহাল এবং বকেয়া বেতনের দাবি সহ।',ftitle:'আপনার আপিল চিঠি তৈরি করুন',fsub:'* চিহ্নিত সমস্ত ক্ষেত্র প্রয়োজনীয়। আপনার তথ্য কখনও সংরক্ষণ করা হয় না।',ln:'পূর্ণ নাম',lp:'প্ল্যাটফর্ম',le:'ইমেইল ঠিকানা',lph:'ফোন (ঐচ্ছিক)',lid:'কুরিয়ার / অ্যাকাউন্ট ID',ldt:'নিষ্ক্রিয়করণের তারিখ',lst:'কী হয়েছে — আপনার পক্ষ',lup:'নিষ্ক্রিয়করণের স্ক্রিনশট (ঐচ্ছিক কিন্তু প্রস্তাবিত)',sp:'প্ল্যাটফর্ম বেছে নিন',so:'অন্য',phst:'উদা. কোনো সতর্কতা ছাড়াই আমার অ্যাকাউন্ট বন্ধ করা হয়েছে। আমার ৪.৯ স্টার রেটিং এবং ১,৪০০+ ডেলিভারি আছে। কোনো পূর্ব সতর্কতা পাইনি। বার্তায় শুধু লেখা ছিল আপনি নিয়ম লঙ্ঘন করেছেন — কোনো নির্দিষ্ট কারণ ছাড়াই…',ut:'স্ক্রিনশট আপলোড করতে ট্যাপ করুন',us:'JPG, PNG, HEIC — ব্যান স্ক্রিনের যেকোনো স্ক্রিনশট',prt:'তাৎক্ষণিক আইনি আপিল চিঠি',prs:'ফর্ম্যাট করা, আইনি তথ্যসূত্র সহ, পাঠাতে প্রস্তুত',prn:'একবারের পেমেন্ট',bgen:'আমার আপিল চিঠি তৈরি করুন →',t1:'NYC LL ৩৪ উদ্ধৃত করে',t2:'বকেয়া বেতনের দাবি',t3:'DCWP অভিযোগের ভাষা',t4:'আপনার তথ্য গোপন থাকে',loading:'আপনার মামলা বিশ্লেষণ করা এবং চিঠি লেখা হচ্ছে…',otitle:'আপনার আপিল চিঠি প্রস্তুত',bdl:'.txt ডাউনলোড করুন',bcopy:'চিঠি কপি করুন',bcopysm:'কপি',lbar:'⚖ আনুষ্ঠানিক আপিল — NYC LL ৩৪ / ২০২৬',brestart:'নতুন চিঠি শুরু করুন',foot:'NYC স্থানীয় আইন ৩৪, ২০২৬ ভিত্তিক তথ্যমূলক সরঞ্জাম। আইনি পরামর্শ নয়।',ereq:'দয়া করে সমস্ত প্রয়োজনীয় ক্ষেত্র (* চিহ্নিত) পূরণ করুন।',eapi:'কিছু ভুল হয়েছে। দয়া করে আবার চেষ্টা করুন।',copied:'কপি হয়েছে!'},
+ne:{badge:'NYC स्थानीय कानून ३४ · २०२६',h1a:'तिनीहरूले तपाईंको',h1b:'अकाउन्ट बन्द गरे।',h1c:'फिर्ता लिनुस्।',hdesc:'२ मिनेटमा कानूनी अपिल पत्र बनाउनुस् — NYC कानूनमा आधारित जसले प्लेटफर्मलाई $२,५०० जरिवाना लगाउँछ। वकिलको आवश्यकता छैन।',cta:'मेरो अपिल सुरु गर्नुस्',s1:'गलत निष्क्रियकरणमा जरिवाना',s2:'प्लेटफर्मले दिनुपर्ने सूचना',s3:'गलत ब्लकिङमा बाँकी तलबको अधिकार',lt:'NYC स्थानीय कानून ३४, २०२६',ld:'एप-आधारित डेलिभरी कामदारहरूलाई अचानक, अस्पष्ट अकाउन्ट निष्क्रियकरणबाट जोगाउँछ।',how:'यसले कसरी काम गर्छ',s1t:'के भयो भन्नुस्',s1d:'आफ्नो आधारभूत जानकारी भर्नुस् र आफ्नै शब्दमा निष्क्रियकरण वर्णन गर्नुस्। लगभग २ मिनेट।',s2t:'स्क्रिनसट अपलोड गर्नुस्',s2d:'वैकल्पिक तर शक्तिशाली। हामी सटीक त्रुटि सन्देश पढ्छौं र प्रमाणको रूपमा प्रयोग गर्छौं।',s3t:'कानूनी पत्र प्राप्त गर्नुस्',s3d:'NYC कानून उद्धृत गर्दै औपचारिक अपिल पत्र, पुनर्स्थापना र बाँकी तलबको माग सहित।',ftitle:'आफ्नो अपिल पत्र बनाउनुस्',fsub:'* चिन्हित सबै क्षेत्रहरू आवश्यक छन्। तपाईंको जानकारी कहिल्यै भण्डारण गरिँदैन।',ln:'पूरा नाम',lp:'प्लेटफर्म',le:'इमेल ठेगाना',lph:'फोन (वैकल्पिक)',lid:'कुरियर / अकाउन्ट ID',ldt:'निष्क्रियकरणको मिति',lst:'के भयो — तपाईंको पक्ष',lup:'निष्क्रियकरणको स्क्रिनसट (वैकल्पिक तर सिफारिस गरिएको)',sp:'प्लेटफर्म छान्नुस्',so:'अन्य',phst:"उदा. कुनै चेतावनी बिना मेरो अकाउन्ट बन्द गरियो। मेरो ४.९ स्टार रेटिङ र १,४००+ डेलिभरी छ। कुनै पूर्व चेतावनी पाइनँ। सन्देशमा मात्र लेखिएको थियो 'तपाईंले नियम उल्लंघन गर्नुभयो' — कुनै विशेष कारण बिना…",ut:'स्क्रिनसट अपलोड गर्न ट्याप गर्नुस्',us:'JPG, PNG, HEIC — ब्यान स्क्रिनको जुनसुकै स्क्रिनसट',prt:'तुरुन्त कानूनी अपिल पत्र',prs:'ढाँचा सहित, कानूनी सन्दर्भ सहित, पठाउन तयार',prn:'एकमुस्त भुक्तानी',bgen:'मेरो अपिल पत्र बनाउनुस् →',t1:'NYC LL ३४ को सन्दर्भ',t2:'बाँकी तलबको माग',t3:'DCWP उजुरी भाषा',t4:'तपाईंको जानकारी निजी रहन्छ',loading:'तपाईंको मामला विश्लेषण र पत्र लेखिँदैछ…',otitle:'तपाईंको अपिल पत्र तयार छ',bdl:'.txt डाउनलोड गर्नुस्',bcopy:'पत्र कपी गर्नुस्',bcopysm:'कपी',lbar:'⚖ औपचारिक अपिल — NYC LL ३४ / २०२६',brestart:'नयाँ पत्र सुरु गर्नुस्',foot:'NYC स्थानीय कानून ३४, २०२६ मा आधारित सूचनात्मक उपकरण। कानूनी सल्लाह होइन।',ereq:'कृपया सबै आवश्यक क्षेत्रहरू (* चिन्हित) भर्नुस्।',eapi:'केही गलत भयो। कृपया फेरि प्रयास गर्नुस्।',copied:'कपी भयो!'},
+uz:{badge:"NYC Mahalliy qonun 34 · 2026",h1a:"Ular sizning",h1b:"hisobingizni blokladi.",h1c:"Uni qaytarib oling.",hdesc:"2 daqiqadan kam vaqtda huquqiy shikoyat xatini yarating — NYC qonuniga asoslanib, har bir qoidabuzarlik uchun platformalarga $2 500 jarima soliladi. Advokatga ehtiyoj yo'q.",cta:"Shikoyatimni boshlash",s1:"Noto'g'ri bloklash uchun jarima",s2:"Platforma berishi shart bo'lgan xabarnoma",s3:"Noto'g'ri bloklash uchun to'liq ish haqi huquqi",lt:"NYC Mahalliy qonun 34, 2026",ld:"Ilova orqali ishlaydigan yetkazib beruvchilarni to'satdan, asossiz hisob bloklashidan himoya qiladi.",how:"Qanday ishlaydi",s1t:"Nima bo'lganini ayting",s1d:"Asosiy ma'lumotlaringizni kiriting va bloklashni o'z so'zlaringiz bilan tasvirlang. Taxminan 2 daqiqa.",s2t:"Skrinshot yuklang",s2d:"Ixtiyoriy, lekin kuchli. Biz xato xabarini aniq o'qiymiz va uni platforma qarshi dalil sifatida ishlatamiz.",s3t:"Huquqiy xatni oling",s3d:"NYC qonuniga havola qilib rasmiy shikoyat xati, tiklash va to'lanmagan ish haqini talab qilish bilan.",ftitle:"Shikoyat xatingizni yarating",fsub:"* bilan belgilangan barcha maydonlar to'ldirilishi shart. Ma'lumotlaringiz hech qachon saqlanmaydi.",ln:"To'liq ism",lp:"Platforma",le:"Elektron pochta",lph:"Telefon (ixtiyoriy)",lid:"Kuryer / hisob ID",ldt:"Bloklash sanasi",lst:"Nima bo'ldi — sizning tomoningiz",lup:"Bloklash xabarnomasining skrinshotini yuklang (ixtiyoriy, lekin tavsiya etiladi)",sp:"Platformani tanlang",so:"Boshqa",phst:"Mas. Mening hisobim ogohlantirmasiz bloklandi. Mening reytingim 4.9 va 1400+ yetkazib berishlarim bor. Hech qanday oldindan ogohlantirish olmadim. Xabarda shunchaki 'siz qoidalarni buzgansiz' deb yozilgan edi — hech qanday aniq sabab ko'rsatilmagan…",ut:"Skrinshot yuklash uchun bosing",us:"JPG, PNG, HEIC — bloklash ekranining istalgan skrinshotini",prt:"Tezkor huquqiy shikoyat xati",prs:"Formatlangan, huquqiy havolali, yuborishga tayyor",prn:"bir martalik to'lov",bgen:"Shikoyat xatimni yaratish →",t1:"NYC LL 34 ga havola",t2:"To'lanmagan ish haqini talab qilish",t3:"DCWP shikoyat tili",t4:"Ma'lumotlaringiz maxfiy qoladi",loading:"Ishingiz tahlil qilinmoqda va xatingiz yozilmoqda…",otitle:"Shikoyat xatingiz tayyor",bdl:".txt yuklab olish",bcopy:"Xatni nusxalash",bcopysm:"Nusxalash",lbar:"⚖ RASMIY SHIKOYAT — NYC LL 34 / 2026",brestart:"Yangi xat boshlash",foot:"NYC Mahalliy qonun 34, 2026 asosidagi ma'lumot vositasi. Huquqiy maslahat emas.",ereq:"Iltimos, barcha majburiy maydonlarni (* bilan belgilangan) to'ldiring.",eapi:"Nimadir noto'g'ri ketdi. Iltimos, qayta urinib ko'ring.",copied:"Nusxalandi!"}
+};
+
+let lang='en';
+function setLang(l){
+  lang=l;
+  document.documentElement.lang=l;
+  document.getElementById('lang-flag').textContent=FLAGS[l]||'🌐';
+  const t=T[l];
+  document.querySelectorAll('[data-i]').forEach(el=>{const k=el.getAttribute('data-i');if(t[k]!==undefined)el.textContent=t[k];});
+  document.querySelectorAll('[data-ph]').forEach(el=>{const k=el.getAttribute('data-ph');if(t[k]!==undefined)el.placeholder=t[k];});
+}
+
+let imgB64=null,imgMime=null;
+function handleUp(inp){
+  const f=inp.files[0];if(!f)return;
+  document.getElementById('fname').textContent='✓ '+f.name;
+  const r=new FileReader();
+  r.onload=e=>{imgB64=e.target.result.split(',')[1];imgMime=f.type;};
+  r.readAsDataURL(f);
+}
+
+let letterText='';
+async function gen(){
+  const eb=document.getElementById('ebar');eb.style.display='none';
+  const name=document.getElementById('fn').value.trim();
+  const plat=document.getElementById('fp').value;
+  const email=document.getElementById('fe').value.trim();
+  const phone=document.getElementById('fph').value.trim();
+  const cid=document.getElementById('fid').value.trim();
+  const date=document.getElementById('fdt').value;
+  const story=document.getElementById('fst').value.trim();
+  if(!name||!plat||!email||!cid||!date||!story){eb.textContent=T[lang].ereq;eb.style.display='block';return;}
+  const btn=document.getElementById('sbtn');btn.disabled=true;
+  document.getElementById('ls').style.display='block';
+  try{
+    // Send form data to Netlify function → creates Stripe checkout session
+    const res=await fetch('/.netlify/functions/create-checkout',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name,platform:plat,email,phone,courierId:cid,date,story})
+    });
+    const data=await res.json();
+    if(!res.ok||!data.url) throw new Error(data.error||'Could not start checkout');
+    // Redirect to Stripe-hosted checkout page
+    window.location.href=data.url;
+  }catch(e){
+    document.getElementById('ls').style.display='none';
+    eb.textContent=T[lang].eapi;eb.style.display='block';console.error(e);
+    btn.disabled=false;
+  }
+}
+
+function cpLetter(){
+  navigator.clipboard.writeText(letterText).then(()=>{
+    const c=T[lang].copied;
+    const b1=document.getElementById('bcopy'),b2=document.getElementById('bcopysm');
+    const o1=b1.textContent,o2=b2.textContent;
+    b1.textContent=c;b2.textContent=c;
+    setTimeout(()=>{b1.textContent=o1;b2.textContent=o2;},2000);
+  });
+}
+function dlLetter(){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([letterText],{type:'text/plain'}));
+  a.download='fightback-nyc-appeal.txt';a.click();
+}
+function resetF(){
+  document.getElementById('ow').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

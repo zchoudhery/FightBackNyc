@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>FightBack NYC — Generating Your Letter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0E0E0E;--paper:#F6F3EE;--cream:#EDEAE3;
+  --red:#C0311A;--red-dark:#9B2614;
+  --gold:#B8913A;--muted:#7C7670;
+  --border:#DEDAD2;--white:#FFFFFF;
+  --fb:#111111;--fbd:#2C2C2C;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;min-height:100vh}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border);background:rgba(246,243,238,0.95);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+@media(max-width:600px){nav{padding:14px 20px}}
+.logo{font-family:'DM Serif Display',serif;font-size:19px;letter-spacing:-0.01em}
+.logo span{color:var(--red)}
+
+/* STATES */
+.state{display:none;max-width:720px;margin:0 auto;padding:80px 48px;text-align:center}
+.state.active{display:block}
+@media(max-width:600px){.state{padding:52px 24px}}
+
+/* Loading state */
+.spin-wrap{display:flex;flex-direction:column;align-items:center;gap:0}
+.spin{width:56px;height:56px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:24px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.state h2{font-family:'DM Serif Display',serif;font-size:clamp(24px,4vw,34px);margin-bottom:12px;line-height:1.15}
+.state p{color:var(--muted);font-size:15px;max-width:440px;margin:0 auto}
+.progress-bar{width:100%;max-width:360px;height:4px;background:var(--border);border-radius:2px;margin:32px auto 0;overflow:hidden}
+.progress-fill{height:100%;background:var(--red);border-radius:2px;width:0%;transition:width 0.4s ease;animation:progress 25s ease-out forwards}
+@keyframes progress{0%{width:0%}60%{width:70%}90%{width:88%}100%{width:95%}}
+
+/* Success state */
+#state-success{text-align:left}
+.success-header{text-align:center;margin-bottom:40px}
+.success-badge{display:inline-flex;align-items:center;gap:8px;background:#EAF4EA;border:1px solid #AADAAA;border-radius:20px;padding:8px 18px;font-size:13px;font-weight:600;color:#2A6B2A;margin-bottom:20px}
+.success-badge::before{content:'✓';font-size:15px}
+.letter-card{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 2px 24px rgba(0,0,0,.06)}
+.letter-bar{background:var(--cream);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.letter-bar span{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.06em}
+.cip{background:none;border:1px solid var(--border);border-radius:5px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;padding:5px 12px;cursor:pointer;color:var(--muted);transition:all .2s}
+.cip:hover{border-color:var(--ink);color:var(--ink)}
+#letter-output{padding:36px 40px;font-family:'Georgia',serif;font-size:14px;line-height:1.9;color:#1E1E1E;white-space:pre-wrap;max-height:560px;overflow-y:auto}
+@media(max-width:600px){#letter-output{padding:24px 20px;font-size:13px}}
+.action-row{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.btn-dl{flex:1;min-width:140px;background:none;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:12px 20px;cursor:pointer;color:var(--ink);transition:background .2s}
+.btn-dl:hover{background:var(--cream)}
+.btn-copy{flex:1;min-width:140px;background:var(--ink);border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:12px 20px;cursor:pointer;color:var(--white);transition:background .2s}
+.btn-copy:hover{background:#333}
+.new-link{display:block;text-align:center;margin-top:16px;font-size:13px;color:var(--muted);text-decoration:underline;cursor:pointer}
+.new-link:hover{color:var(--ink)}
+
+/* Error state */
+.err-icon{font-size:48px;margin-bottom:16px}
+.err-box{background:#FFF5F5;border:1px solid #FFCCCC;border-radius:10px;padding:20px;font-size:14px;color:#8B2020;margin:20px 0}
+.retry-btn{background:var(--red);color:var(--white);border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:12px 24px;cursor:pointer;margin-top:4px}
+.retry-btn:hover{background:var(--red-dark)}
+
+footer{border-top:1px solid var(--border);text-align:center;padding:28px 24px;font-size:13px;color:var(--muted);margin-top:60px}
+footer strong{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">FightBack<span>NYC</span></div>
+</nav>
+
+<!-- LOADING STATE -->
+<div class="state active" id="state-loading">
+  <div class="spin-wrap">
+    <div class="spin"></div>
+  </div>
+  <h2>Payment confirmed.<br>Writing your letter…</h2>
+  <p>We're drafting your formal legal appeal, citing the exact statutes that apply to your case. This takes about 20 seconds.</p>
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+</div>
+
+<!-- SUCCESS STATE -->
+<div class="state" id="state-success">
+  <div class="success-header">
+    <div class="success-badge">Payment confirmed — letter ready</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(24px,4vw,34px);line-height:1.15;margin-bottom:8px">Your appeal letter is ready.</h2>
+    <p style="color:var(--muted);font-size:15px">Copy it, send it. A copy has also been sent to your email.</p>
+  </div>
+
+  <div class="letter-card">
+    <div class="letter-bar">
+      <span>⚖ FORMAL APPEAL — NYC LOCAL LAW 34 / 2026</span>
+      <button class="cip" id="cip-btn" onclick="copyLetter()">Copy</button>
+    </div>
+    <div id="letter-output"></div>
+  </div>
+
+  <div class="action-row">
+    <button class="btn-dl" onclick="downloadLetter()">⬇ Download .txt</button>
+    <button class="btn-copy" id="copy-main-btn" onclick="copyLetter()">Copy full letter</button>
+  </div>
+  <a class="new-link" href="/index.html">Generate another letter</a>
+</div>
+
+<!-- ERROR STATE -->
+<div class="state" id="state-error">
+  <div class="err-icon">⚠️</div>
+  <h2>Something went wrong</h2>
+  <div class="err-box" id="err-msg">We couldn't generate your letter.</div>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:20px">Your payment was captured. Please contact us at <strong>support@fightbacknyc.com</strong> with your session ID and we'll resolve this within 24 hours.</p>
+  <button class="retry-btn" onclick="location.reload()">Try again</button>
+</div>
+
+<footer><strong>FightBack NYC</strong> — Based on NYC Local Law 34 of 2026. Not legal advice.</footer>
+
+<script>
+let letterText = '';
+
+function showState(id) {
+  document.querySelectorAll('.state').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function copyLetter() {
+  navigator.clipboard.writeText(letterText).then(() => {
+    const b1 = document.getElementById('copy-main-btn');
+    const b2 = document.getElementById('cip-btn');
+    const o1 = b1.textContent, o2 = b2.textContent;
+    b1.textContent = 'Copied!'; b2.textContent = 'Copied!';
+    setTimeout(() => { b1.textContent = o1; b2.textContent = o2; }, 2000);
+  });
+}
+
+function downloadLetter() {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([letterText], { type: 'text/plain' }));
+  a.download = 'fightback-nyc-appeal-letter.txt';
+  a.click();
+}
+
+async function init() {
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');
+
+  if (!sessionId) {
+    document.getElementById('err-msg').textContent = 'No payment session found. Please return to the form and try again.';
+    showState('state-error');
+    return;
+  }
+
+  try {
+    const res = await fetch('/.netlify/functions/generate-letter', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sessionId }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.letter) {
+      throw new Error(data.error || 'Generation failed');
+    }
+
+    letterText = data.letter;
+    document.getElementById('letter-output').textContent = letterText;
+    showState('state-success');
+
+  } catch (err) {
+    console.error(err);
+    document.getElementById('err-msg').textContent =
+      err.message || 'An unexpected error occurred. Please contact support.';
+    showState('state-error');
+  }
+}
+
+init();
+</script>
+</body>
+</html>

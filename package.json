@@ -1,0 +1,11 @@
+{
+  "name": "fightback-nyc",
+  "version": "1.0.0",
+  "description": "FightBack NYC - Delivery Worker Appeal Letter Generator",
+  "scripts": {
+    "dev": "netlify dev"
+  },
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}
