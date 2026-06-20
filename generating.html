@@ -104,6 +104,69 @@ footer strong{color:var(--ink)}
     <button class="btn-dl" onclick="downloadLetter()">⬇ Download .txt</button>
     <button class="btn-copy" id="copy-main-btn" onclick="copyLetter()">Copy full letter</button>
   </div>
+
+  <!-- HOW TO SUBMIT -->
+  <div style="margin-top:40px;background:#F0FAF3;border:1px solid #AADAAA;border-radius:14px;padding:28px 24px">
+    <h3 style="font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:6px;color:#1A5C2A">📬 What to do with your letter</h3>
+    <p style="font-size:13px;color:#4A7A5A;margin-bottom:20px">Follow these steps to submit your appeal. The more places you send it, the stronger your case.</p>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+
+      <div style="background:white;border:1px solid #DEDAD2;border-radius:10px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start">
+        <div style="font-size:22px;flex-shrink:0">1️⃣</div>
+        <div>
+          <div style="font-weight:700;font-size:14px;margin-bottom:4px">Submit in-app first</div>
+          <div style="font-size:13px;color:#7C7670;line-height:1.6">Open your DoorDash / UberEats / Grubhub app → Go to <strong>Help</strong> or <strong>Support</strong> → Find <strong>Appeal Deactivation</strong> → Copy and paste your letter into the text box → Submit.</div>
+        </div>
+      </div>
+
+      <div style="background:white;border:1px solid #DEDAD2;border-radius:10px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start">
+        <div style="font-size:22px;flex-shrink:0">2️⃣</div>
+        <div>
+          <div style="font-weight:700;font-size:14px;margin-bottom:4px">Email the platform's legal team</div>
+          <div style="font-size:13px;color:#7C7670;line-height:1.6">
+            <strong>DoorDash:</strong> support@doordash.com<br/>
+            <strong>Uber Eats:</strong> couriersupport@uber.com<br/>
+            <strong>Grubhub:</strong> driversupport@grubhub.com<br/>
+            <strong>Instacart:</strong> support@instacart.com<br/><br/>
+            Subject line: <em>"Formal Appeal — Wrongful Deactivation — NYC Local Law 34 of 2026"</em><br/>
+            Paste your full letter in the email body.
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border:1px solid #DEDAD2;border-radius:10px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start">
+        <div style="font-size:22px;flex-shrink:0">3️⃣</div>
+        <div>
+          <div style="font-weight:700;font-size:14px;margin-bottom:4px">File a complaint with NYC DCWP</div>
+          <div style="font-size:13px;color:#7C7670;line-height:1.6">If the platform doesn't respond within 5 business days, file a complaint with the NYC Department of Consumer and Worker Protection:<br/><br/>
+          🌐 <strong>nyc.gov/dcwp</strong> → click <strong>File a Complaint</strong><br/>
+          📞 Or call: <strong>311</strong> and say "delivery worker complaint"<br/><br/>
+          The city can investigate and, if violations are found, may impose fines and order remedies.</div>
+        </div>
+      </div>
+
+      <div style="background:white;border:1px solid #DEDAD2;border-radius:10px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start">
+        <div style="font-size:22px;flex-shrink:0">4️⃣</div>
+        <div>
+          <div style="font-weight:700;font-size:14px;margin-bottom:4px">Keep a record</div>
+          <div style="font-size:13px;color:#7C7670;line-height:1.6">Screenshot every submission. Save all emails. Write down dates and times. This record is important if the case goes further.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- THANK YOU + DISCLAIMER -->
+  <div style="margin-top:24px;background:#F6F3EE;border:1px solid #DEDAD2;border-radius:14px;padding:24px;text-align:center">
+    <div style="font-size:28px;margin-bottom:10px">🙏</div>
+    <h3 style="font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:8px">Thank you for choosing FightBack NYC</h3>
+    <p style="font-size:13px;color:#7C7670;line-height:1.65;max-width:480px;margin:0 auto 16px">We built this tool because every delivery worker deserves to fight back. NYC law is on your side — use it. Good luck, and we hope you get reinstated quickly.</p>
+    <div style="background:white;border:1px solid #DEDAD2;border-radius:8px;padding:14px 18px;font-size:12px;color:#AAA;line-height:1.6;text-align:left">
+      <strong style="color:#7C7670">⚠️ Disclaimer:</strong> FightBack NYC is an informational tool, not a law firm. The letter generated is based on publicly available NYC laws protecting delivery workers and is intended to help workers understand and assert their rights. This is not legal advice, does not guarantee any outcome, and does not create an attorney-client relationship. Results depend entirely on your individual circumstances and the platform's response. For complex legal matters, please consult a licensed labor attorney.
+    </div>
+  </div>
+
   <a class="new-link" href="/index.html">Generate another letter</a>
 </div>
 
@@ -112,11 +175,11 @@ footer strong{color:var(--ink)}
   <div class="err-icon">⚠️</div>
   <h2>Something went wrong</h2>
   <div class="err-box" id="err-msg">We couldn't generate your letter.</div>
-  <p style="color:var(--muted);font-size:14px;margin-bottom:20px">Your payment was captured. Please contact us at <strong>support@fightbacknyc.com</strong> with your session ID and we'll resolve this within 24 hours.</p>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:20px">Your payment was captured. Please contact us at <strong>Support@fightbacknyc.net</strong> with your session ID and we'll resolve this within 24 hours.</p>
   <button class="retry-btn" onclick="location.reload()">Try again</button>
 </div>
 
-<footer><strong>FightBack NYC</strong> — Based on NYC Local Law 34 of 2026. Not legal advice.</footer>
+<footer><div style="margin-bottom:8px"><a href="/terms.html" style="font-size:12px;color:#C0311A;text-decoration:none;font-weight:600">Terms of Service & Refund Policy</a></div><strong>FightBack NYC</strong> — Based on NYC Local Law 34 of 2026. Not legal advice.</footer>
 
 <script>
 let letterText = '';
