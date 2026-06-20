@@ -3,27 +3,41 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>FightBack NYC</title>
+<title>FightBack NYC — Delivery Worker Legal Appeals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#0E0E0E;--paper:#F6F3EE;--cream:#EDEAE3;
+  --ink:#0E0E0E;--paper:#FFFFFF;--cream:#F5F2ED;
   --red:#C0311A;--red-dark:#9B2614;
   --gold:#B8913A;--muted:#7C7670;
-  --border:#DEDAD2;--white:#FFFFFF;
-  --fb:#111111;--fc:#1A1A1A;--fbd:#2C2C2C;--fi:#202020;
+  --border:#E8E4DC;--white:#FFFFFF;
+  --fb:#181818;--fc:#1A1A1A;--fbd:#383838;--fi:#242424;
 }
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;position:relative}
 
-/* NAV */
-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border);background:rgba(246,243,238,0.95);position:sticky;top:0;z-index:200;backdrop-filter:blur(10px)}
+/* ── NYC SKYLINE WATERMARK ── */
+.skyline-bg{
+  position:fixed;bottom:0;left:0;right:0;
+  height:320px;pointer-events:none;z-index:0;
+  overflow:hidden;
+}
+.skyline-bg svg{
+  position:absolute;bottom:0;left:50%;
+  transform:translateX(-50%);
+  min-width:1200px;width:100%;
+  opacity:0.035;
+}
+body > *:not(.skyline-bg){position:relative;z-index:1}
+
+/* ── NAV ── */
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.97);position:sticky;top:0;z-index:200;backdrop-filter:blur(12px)}
 @media(max-width:680px){nav{padding:14px 20px}}
 .logo{font-family:'DM Serif Display',serif;font-size:19px;letter-spacing:-0.01em}
 .logo span{color:var(--red)}
-.lang-wrap{position:relative;display:flex;align-items:center;gap:8px}
+.lang-wrap{display:flex;align-items:center;gap:8px}
 #lang-flag{font-size:16px;pointer-events:none;line-height:1}
 .lang-sel{
   background:var(--white);border:1px solid var(--border);border-radius:8px;
@@ -32,11 +46,11 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:16px 4
   -webkit-appearance:none;appearance:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%237C7670' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 10px center;min-width:148px;
-  transition:border-color .2s,box-shadow .2s;
+  transition:border-color .2s;
 }
-.lang-sel:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(14,14,14,.08)}
+.lang-sel:focus{border-color:var(--ink)}
 
-/* HERO */
+/* ── HERO ── */
 .hero{max-width:960px;margin:0 auto;padding:80px 48px 64px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:center}
 @media(max-width:820px){.hero{grid-template-columns:1fr;padding:48px 24px 40px;gap:40px}}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:22px}
@@ -48,10 +62,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:16px 4
 .cta{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:var(--white);border:none;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;padding:14px 28px;border-radius:9px;cursor:pointer;transition:background .2s,transform .15s}
 .cta:hover{background:var(--red-dark)}
 .cta:active{transform:scale(.98)}
-.carr{display:inline-block;transition:transform .2s}
+.carr{transition:transform .2s}
 .cta:hover .carr{transform:translateX(4px)}
-
-/* Stats panel */
 .panel{background:var(--cream);border:1px solid var(--border);border-radius:16px;padding:28px}
 .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .scard{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 16px}
@@ -62,7 +74,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:16px 4
 .lawbadge{margin-top:16px;background:var(--ink);color:var(--paper);border-radius:10px;padding:16px 20px;font-size:13px;line-height:1.55}
 .lawbadge strong{display:block;font-size:13px;font-weight:600;margin-bottom:4px}
 
-/* HOW */
+/* ── HOW ── */
 .how{max-width:960px;margin:0 auto;padding:72px 48px;border-top:1px solid var(--border)}
 @media(max-width:680px){.how{padding:48px 24px}}
 .sec-eye{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:40px}
@@ -75,10 +87,16 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:16px 4
 .step h3{font-family:'DM Serif Display',serif;font-size:17px;margin-bottom:8px}
 .step p{font-size:14px;color:var(--muted);line-height:1.65}
 
-/* FORM */
-.fwrap{background:var(--fb);color:var(--paper);padding:80px 48px}
+/* ── FORM ── */
+.fwrap{background:var(--fb);color:var(--paper);padding:80px 48px;position:relative;overflow:hidden}
+.fwrap::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300'%3E%3Cpath fill='none' stroke='%23C0311A' stroke-width='0.6' stroke-opacity='0.12' d='M0,300 L0,180 L20,180 L20,150 L40,150 L40,120 L55,120 L55,95 L65,95 L65,75 L75,75 L75,55 L85,55 L85,40 L95,40 L95,30 L100,25 L105,30 L105,40 L115,40 L115,55 L125,55 L125,75 L135,75 L135,95 L145,95 L145,120 L160,120 L160,100 L170,100 L170,80 L180,80 L180,60 L190,60 L190,45 L200,45 L200,35 L205,28 L210,35 L210,45 L220,45 L220,60 L230,60 L230,80 L245,80 L245,95 L260,95 L260,110 L275,110 L275,85 L285,85 L285,65 L295,65 L295,48 L305,48 L305,35 L310,28 L315,35 L315,48 L325,48 L325,65 L335,65 L335,85 L350,85 L350,100 L365,100 L365,120 L380,120 L380,90 L395,90 L395,70 L410,70 L410,50 L420,50 L420,38 L425,30 L430,38 L430,50 L445,50 L445,70 L460,70 L460,90 L475,90 L475,110 L490,110 L490,130 L510,130 L510,100 L525,100 L525,75 L540,75 L540,55 L555,55 L555,38 L562,30 L570,38 L570,55 L585,55 L585,75 L600,75 L600,95 L615,95 L615,115 L630,115 L630,95 L645,95 L645,75 L660,75 L660,55 L675,55 L675,38 L682,30 L690,38 L690,55 L705,55 L705,75 L720,75 L720,100 L735,100 L735,130 L755,130 L755,110 L770,110 L770,90 L785,90 L785,70 L800,70 L800,50 L810,50 L810,38 L815,30 L820,38 L820,50 L835,50 L835,70 L850,70 L850,90 L865,90 L865,120 L880,120 L880,100 L895,100 L895,80 L910,80 L910,60 L925,60 L925,45 L935,45 L935,35 L940,28 L945,35 L945,45 L955,45 L955,60 L965,60 L965,80 L975,80 L975,100 L990,100 L990,120 L1005,120 L1005,95 L1015,95 L1015,75 L1025,75 L1025,55 L1035,55 L1035,40 L1045,40 L1045,30 L1050,25 L1055,30 L1055,40 L1065,40 L1065,55 L1075,55 L1075,75 L1085,75 L1085,95 L1100,95 L1100,120 L1115,120 L1115,150 L1135,150 L1135,180 L1155,180 L1155,200 L1200,200 L1200,300 Z'/%3E%3C/svg%3E") bottom center no-repeat;
+  background-size:cover;
+  pointer-events:none;
+}
 @media(max-width:680px){.fwrap{padding:52px 24px}}
-.finner{max-width:740px;margin:0 auto}
+.finner{max-width:740px;margin:0 auto;position:relative}
 .ftitle{font-family:'DM Serif Display',serif;font-size:clamp(24px,4vw,36px);line-height:1.1;margin-bottom:10px;letter-spacing:-.015em}
 .fsub{color:#888;font-size:14px;margin-bottom:44px}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -93,14 +111,14 @@ input[type=text],input[type=email],input[type=tel],input[type=date],select,texta
   padding:13px 16px;width:100%;outline:none;-webkit-appearance:none;
   transition:border-color .2s,box-shadow .2s;
 }
-input:focus,select:focus,textarea:focus{border-color:#666;box-shadow:0 0 0 3px rgba(184,145,58,.12)}
-input::placeholder,textarea::placeholder{color:#444}
+input:focus,select:focus,textarea:focus{border-color:#555;box-shadow:0 0 0 3px rgba(184,145,58,.1)}
+input::placeholder,textarea::placeholder{color:#3A3A3A}
 select option{background:#1A1A1A}
 textarea{resize:vertical;min-height:108px;line-height:1.65}
-.uzone{border:2px dashed var(--fbd);border-radius:12px;padding:30px 20px;text-align:center;cursor:pointer;position:relative;transition:border-color .2s,background .2s}
-.uzone:hover{border-color:#555;background:#171717}
+.uzone{border:2px dashed var(--fbd);border-radius:12px;padding:28px 20px;text-align:center;cursor:pointer;position:relative;transition:border-color .2s,background .2s}
+.uzone:hover{border-color:#555;background:#141414}
 .uzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:none;background:none}
-.uico{font-size:28px;display:block;margin-bottom:10px}
+.uico{font-size:26px;display:block;margin-bottom:10px}
 .uzone strong{display:block;font-size:14px;margin-bottom:4px}
 .uzone small{font-size:12px;color:#555}
 #fname{font-size:13px;color:var(--gold);margin-top:8px;min-height:16px}
@@ -118,19 +136,61 @@ textarea{resize:vertical;min-height:108px;line-height:1.65}
 .chip{font-size:12px;color:#666;border:1px solid #262626;border-radius:20px;padding:5px 14px;display:flex;align-items:center;gap:6px}
 .chip::before{content:'✓';color:var(--gold);font-weight:700}
 .ebar{background:#2A0808;border:1px solid #5A1010;border-radius:8px;color:#FF9999;font-size:14px;padding:13px 18px;margin-top:16px;display:none}
-.lstate{display:none;text-align:center;padding:52px 0}
-.spin{width:42px;height:42px;border:3px solid #282828;border-top-color:var(--gold);border-radius:50%;margin:0 auto 16px;animation:spin .75s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.lstate p{color:#666;font-size:14px}
 
-/* OUTPUT */
+/* ── RIDER ANIMATION ── */
+.lstate{display:none;text-align:center;padding:40px 0 20px}
+.rider-scene{
+  position:relative;width:100%;height:110px;
+  overflow:hidden;margin-bottom:12px;
+  background:linear-gradient(180deg,transparent 60%,rgba(192,49,26,0.04) 100%);
+  border-radius:12px;
+}
+/* Animated NYC skyline inside dark loading area */
+.scene-skyline{
+  position:absolute;bottom:14px;left:0;right:0;
+  opacity:0.12;
+}
+.road-line{
+  position:absolute;bottom:12px;left:0;right:0;
+  height:2px;background:#2A2A2A;border-radius:1px;
+}
+.road-dashes{
+  position:absolute;bottom:12px;left:0;right:0;height:2px;overflow:hidden;
+}
+.road-dashes::after{
+  content:'';position:absolute;top:1px;left:-100%;width:200%;height:1px;
+  background:repeating-linear-gradient(90deg,#C0311A 0,#C0311A 16px,transparent 16px,transparent 32px);
+  animation:dashscroll .35s linear infinite;
+}
+@keyframes dashscroll{0%{transform:translateX(0)}100%{transform:translateX(32px)}}
+
+/* Speed lines */
+.spl{position:absolute;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(192,49,26,0.7));animation:speedfly .5s linear infinite}
+.spl:nth-child(1){width:36px;top:35px;animation-delay:0s}
+.spl:nth-child(2){width:24px;top:48px;animation-delay:.18s}
+.spl:nth-child(3){width:18px;top:60px;animation-delay:.08s}
+@keyframes speedfly{0%{right:78%;opacity:0}25%{opacity:1}100%{right:108%;opacity:0}}
+
+/* Rider */
+.rider-wrap{
+  position:absolute;bottom:14px;
+  animation:ridethrough 2s linear infinite;
+}
+@keyframes ridethrough{0%{left:-90px}100%{left:105%}}
+.rider-bounce{animation:bump .2s ease-in-out infinite alternate}
+@keyframes bump{0%{transform:translateY(0)}100%{transform:translateY(-2px)}}
+
+.lstate-txt{color:#666;font-size:14px;margin-top:4px}
+.lstate-sub{color:#444;font-size:12px;margin-top:6px}
+
+/* ── OUTPUT ── */
 .owrap{max-width:840px;margin:0 auto;padding:72px 48px;display:none}
 @media(max-width:680px){.owrap{padding:44px 24px}}
 .ohd{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
 .ohd h2{font-family:'DM Serif Display',serif;font-size:26px}
 .oacts{display:flex;gap:10px}
-.bghost{background:none;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:10px 18px;cursor:pointer;color:var(--ink);transition:background .2s,border-color .2s}
-.bghost:hover{background:var(--cream);border-color:#C0BCB4}
+.bghost{background:none;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:10px 18px;cursor:pointer;color:var(--ink);transition:background .2s}
+.bghost:hover{background:var(--cream)}
 .bsolid{background:var(--ink);border:1px solid var(--ink);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:10px 18px;cursor:pointer;color:var(--white);transition:background .2s}
 .bsolid:hover{background:#333}
 .lcard{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden}
@@ -143,15 +203,54 @@ textarea{resize:vertical;min-height:108px;line-height:1.65}
 .rrow{text-align:center;padding:22px;border-top:1px solid var(--border)}
 .rbtn{background:none;border:none;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--muted);text-decoration:underline;cursor:pointer}
 .rbtn:hover{color:var(--ink)}
-
 footer{border-top:1px solid var(--border);text-align:center;padding:32px 24px;font-size:13px;color:var(--muted)}
 footer strong{color:var(--ink)}
 </style>
 </head>
 <body>
 
+<!-- NYC SKYLINE WATERMARK BACKGROUND -->
+<div class="skyline-bg">
+  <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+    <path fill="#C0311A" d="
+      M0,300 L0,200 L30,200 L30,170 L50,170 L50,140 L70,140 L70,110
+      L80,110 L80,90 L90,90 L90,70 L100,70 L100,50 L108,50 L108,35
+      L112,25 L116,35 L116,50 L124,50 L124,70 L134,70 L134,90
+      L144,90 L144,110 L155,110 L155,90 L165,90 L165,72 L175,72
+      L175,55 L185,55 L185,42 L192,42 L192,32 L197,24 L202,32
+      L202,42 L210,42 L210,55 L220,55 L220,72 L232,72 L232,88
+      L244,88 L244,105 L258,105 L258,85 L268,85 L268,65 L278,65
+      L278,48 L288,48 L288,35 L293,26 L298,35 L298,48 L308,48
+      L308,65 L318,65 L318,85 L330,85 L330,100 L345,100 L345,80
+      L358,80 L358,60 L370,60 L370,44 L380,44 L380,33 L386,24
+      L392,33 L392,44 L403,44 L403,60 L415,60 L415,80 L428,80
+      L428,100 L442,100 L442,120 L458,120 L458,95 L472,95 L472,72
+      L485,72 L485,52 L497,52 L497,37 L503,27 L509,37 L509,52
+      L522,52 L522,72 L535,72 L535,95 L550,95 L550,115 L565,115
+      L565,95 L578,95 L578,72 L591,72 L591,52 L603,52 L603,37
+      L609,27 L615,37 L615,52 L628,52 L628,72 L641,72 L641,95
+      L656,95 L656,115 L672,115 L672,95 L685,95 L685,72 L698,72
+      L698,52 L710,52 L710,37 L716,27 L722,37 L722,52 L735,52
+      L735,72 L748,72 L748,95 L763,95 L763,120 L778,120 L778,100
+      L792,100 L792,80 L805,80 L805,60 L817,60 L817,44 L827,44
+      L827,33 L833,24 L839,33 L839,44 L850,44 L850,60 L862,60
+      L862,80 L875,80 L875,100 L890,100 L890,85 L902,85 L902,65
+      L912,65 L912,48 L922,48 L922,35 L927,26 L932,35 L932,48
+      L942,48 L942,65 L952,65 L952,85 L964,85 L964,105 L978,105
+      L978,88 L990,88 L990,72 L1002,72 L1002,55 L1012,55 L1012,42
+      L1019,42 L1019,32 L1024,24 L1029,32 L1029,42 L1037,42
+      L1037,55 L1047,55 L1047,72 L1059,72 L1059,90 L1069,90
+      L1069,110 L1080,110 L1080,90 L1090,90 L1090,70 L1100,70
+      L1100,50 L1108,50 L1108,35 L1112,25 L1116,35 L1116,50
+      L1124,50 L1124,70 L1134,70 L1134,90 L1144,90 L1144,110
+      L1155,110 L1155,140 L1170,140 L1170,170 L1190,170 L1190,200
+      L1200,200 L1200,300 Z
+    "/>
+  </svg>
+</div>
+
 <nav>
-  <div class="logo">FightBack<span>NYC</span></div>
+  <a href="#" style="display:flex;align-items:center;text-decoration:none"><img src="logo-transparent.png" alt="FightBack NYC" style="height:44px;width:auto"/></a>
   <div class="lang-wrap">
     <span id="lang-flag">🇺🇸</span>
     <select class="lang-sel" id="lsel" onchange="setLang(this.value)">
@@ -162,6 +261,8 @@ footer strong{color:var(--ink)}
       <option value="bn">বাংলা</option>
       <option value="ne">नेपाली</option>
       <option value="uz">O'zbekcha</option>
+      <option value="pa">ਪੰਜਾਬੀ</option>
+      <option value="tr">Türkçe</option>
     </select>
   </div>
 </nav>
@@ -190,6 +291,15 @@ footer strong{color:var(--ink)}
   </div>
 </section>
 
+<!-- LOGO HERO STRIP -->
+<div style="background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 48px;display:flex;align-items:center;justify-content:center;gap:32px;overflow:hidden">
+  <img src="logo-transparent.png" alt="FightBack NYC" style="height:90px;width:auto;opacity:0.85"/>
+  <div style="text-align:center">
+    <div style="font-family:DM Serif Display,serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Fighting for NYC delivery workers since 2025</div>
+    <div style="font-size:13px;color:var(--muted)">DoorDash · Uber Eats · Grubhub · Instacart · Relay</div>
+  </div>
+</div>
+
 <section class="how">
   <div class="sec-eye" data-i="how">How it works</div>
   <div class="steps">
@@ -199,9 +309,105 @@ footer strong{color:var(--ink)}
   </div>
 </section>
 
+<!-- FAQ + CHECKER SECTION -->
+<section id="faq-checker" style="max-width:960px;margin:0 auto;padding:72px 48px;border-top:1px solid var(--border)">
+
+  <!-- CHECKER CALLOUT -->
+  <div style="background:linear-gradient(135deg,#1A2B4A,#0D0D0D);border-radius:14px;padding:28px 32px;margin-bottom:56px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#B8913A;margin-bottom:8px">Free Tool</div>
+      <h3 style="font-family:DM Serif Display,serif;font-size:22px;color:white;margin-bottom:6px;line-height:1.2">How strong is your case?</h3>
+      <p style="font-size:14px;color:#888;max-width:420px">Answer 5 quick questions and we will tell you exactly how strong your deactivation case is under NYC Local Law 34.</p>
+    </div>
+    <button onclick="document.getElementById('checker-modal').style.display='flex'" style="background:#B8913A;color:white;border:none;border-radius:9px;font-family:DM Sans,sans-serif;font-size:14px;font-weight:600;padding:13px 24px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .2s" onmouseover="this.style.background='#8B6914'" onmouseout="this.style.background='#B8913A'">Check my case strength →</button>
+  </div>
+
+  <!-- FAQ -->
+  <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#7C7670;margin-bottom:32px">Frequently asked questions</div>
+
+  <div id="faq-list" style="display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:white">
+
+    <div class="faq-item" onclick="toggleFaq(this)" style="border-bottom:1px solid var(--border);cursor:pointer">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px">
+        <span style="font-weight:600;font-size:15px">Will this actually work?</span>
+        <span class="faq-arrow" style="font-size:18px;color:#7C7670;transition:transform .3s;flex-shrink:0">+</span>
+      </div>
+      <div class="faq-body" style="display:none;padding:0 24px 20px;font-size:14px;color:#7C7670;line-height:1.7">It depends on the case, but the letter creates serious legal pressure. Platforms know that NYC Local Law 34 gives the city the power to fine them $2,500 per violation and force reinstatement. When they receive a formal legal letter citing exact statutes, most platforms take it seriously rather than risk a DCWP investigation. No tool can guarantee an outcome, but this gives you the strongest possible legal argument.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" style="border-bottom:1px solid var(--border);cursor:pointer">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px">
+        <span style="font-weight:600;font-size:15px">How fast do I get my letter?</span>
+        <span class="faq-arrow" style="font-size:18px;color:#7C7670;transition:transform .3s;flex-shrink:0">+</span>
+      </div>
+      <div class="faq-body" style="display:none;padding:0 24px 20px;font-size:14px;color:#7C7670;line-height:1.7">Within a few minutes after payment. Once your payment is confirmed, our AI drafts your personalized legal letter and displays it on screen immediately. You can copy it or download it as a file and send it right away.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" style="border-bottom:1px solid var(--border);cursor:pointer">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px">
+        <span style="font-weight:600;font-size:15px">Is NYC Local Law 34 real?</span>
+        <span class="faq-arrow" style="font-size:18px;color:#7C7670;transition:transform .3s;flex-shrink:0">+</span>
+      </div>
+      <div class="faq-body" style="display:none;padding:0 24px 20px;font-size:14px;color:#7C7670;line-height:1.7">100% real. NYC Local Law 34 of 2026 is an actual city law passed to protect app-based delivery workers from wrongful deactivation. In 2026, the city already fined Uber Eats $5 million and forced them to reinstate nearly 10,000 workers. The law is actively being enforced by the NYC Department of Consumer and Worker Protection (DCWP).</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" style="border-bottom:1px solid var(--border);cursor:pointer">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px">
+        <span style="font-weight:600;font-size:15px">Do I need a lawyer?</span>
+        <span class="faq-arrow" style="font-size:18px;color:#7C7670;transition:transform .3s;flex-shrink:0">+</span>
+      </div>
+      <div class="faq-body" style="display:none;padding:0 24px 20px;font-size:14px;color:#7C7670;line-height:1.7">No. That is the whole point of FightBack NYC. A lawyer would cost hundreds of dollars just for an initial consultation. Our tool generates the same type of formal legal letter for $15, in minutes. For complex cases that go further, we always recommend consulting a licensed labor attorney — but most deactivation appeals never reach that stage.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" style="border-bottom:1px solid var(--border);cursor:pointer">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px">
+        <span style="font-weight:600;font-size:15px">Is my personal information safe?</span>
+        <span class="faq-arrow" style="font-size:18px;color:#7C7670;transition:transform .3s;flex-shrink:0">+</span>
+      </div>
+      <div class="faq-body" style="display:none;padding:0 24px 20px;font-size:14px;color:#7C7670;line-height:1.7">Yes. Your information is used only to generate your letter and is never stored on our servers after delivery. Payments are processed securely by Stripe — we never see your card details. Your data is not sold or shared with anyone.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" style="border-bottom:1px solid var(--border);cursor:pointer">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px">
+        <span style="font-weight:600;font-size:15px">What platforms does this cover?</span>
+        <span class="faq-arrow" style="font-size:18px;color:#7C7670;transition:transform .3s;flex-shrink:0">+</span>
+      </div>
+      <div class="faq-body" style="display:none;padding:0 24px 20px;font-size:14px;color:#7C7670;line-height:1.7">Any app-based delivery platform operating in New York City — including DoorDash, Uber Eats, Grubhub, Instacart, and Relay. If you deliver in NYC and your account was deactivated, NYC Local Law 34 protects you regardless of which platform you work for.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" style="cursor:pointer">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px">
+        <span style="font-weight:600;font-size:15px">What if the platform ignores my letter?</span>
+        <span class="faq-arrow" style="font-size:18px;color:#7C7670;transition:transform .3s;flex-shrink:0">+</span>
+      </div>
+      <div class="faq-body" style="display:none;padding:0 24px 20px;font-size:14px;color:#7C7670;line-height:1.7">If they do not respond within 5 business days, you have the right to escalate to the NYC Department of Consumer and Worker Protection (DCWP). File a complaint at nyc.gov/dcwp or call 311. The city can then launch an official investigation, impose $2,500 fines per violation, and order reinstatement and back pay. Your letter also serves as documentation for that complaint.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DEACTIVATION CHECKER MODAL -->
+<div id="checker-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:500;align-items:center;justify-content:center;padding:20px">
+  <div style="background:white;border-radius:16px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative">
+    <button onclick="closeChecker()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:#7C7670;line-height:1">×</button>
+    <div style="padding:32px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#B8913A;margin-bottom:8px">Free Case Checker</div>
+      <h3 style="font-family:DM Serif Display,serif;font-size:24px;margin-bottom:6px">How strong is your case?</h3>
+      <p style="font-size:14px;color:#7C7670;margin-bottom:28px">Answer 5 questions to see your case strength under NYC Local Law 34.</p>
+      <div id="checker-questions"></div>
+      <div id="checker-result" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
 <div class="fwrap" id="fa">
   <div class="finner">
-    <h2 class="ftitle" data-i="ftitle">Build your appeal letter</h2>
+    <div style="display:flex;align-items:center;gap:20px;margin-bottom:28px">
+      <img src="logo-colored.png" alt="FightBack NYC" style="height:56px;width:auto;filter:brightness(0) invert(1);opacity:0.9"/>
+      <div>
+        <h2 class="ftitle" data-i="ftitle" style="margin-bottom:0">Build your appeal letter</h2>
+      </div>
+    </div>
     <p class="fsub" data-i="fsub">All fields marked * are required. Your information is never stored.</p>
     <div class="fgrid">
       <div class="fg">
@@ -260,7 +466,72 @@ footer strong{color:var(--ink)}
       <div class="chip"><span data-i="t4">Your info stays private</span></div>
     </div>
     <div class="ebar" id="ebar"></div>
-    <div class="lstate" id="ls"><div class="spin"></div><p data-i="loading">Analyzing your case and writing your letter…</p></div>
+
+    <!-- ANIMATED RIDER LOADING STATE -->
+    <div class="lstate" id="ls">
+      <div class="rider-scene">
+        <!-- Speed lines -->
+        <div class="spl"></div>
+        <div class="spl"></div>
+        <div class="spl"></div>
+        <!-- Mini NYC skyline inside scene -->
+        <svg class="scene-skyline" viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg" height="55">
+          <path fill="#C0311A" d="M0,60 L0,42 L15,42 L15,32 L25,32 L25,22 L32,22 L32,16 L36,12 L38,10 L40,12 L40,16 L47,16 L47,22 L55,22 L55,32 L65,32 L65,22 L72,22 L72,14 L78,14 L78,8 L82,5 L86,8 L86,14 L93,14 L93,22 L103,22 L103,32 L115,32 L115,24 L122,24 L122,16 L129,16 L129,10 L133,6 L137,10 L137,16 L144,16 L144,24 L153,24 L153,32 L165,32 L165,22 L175,22 L175,14 L182,14 L182,8 L186,4 L190,8 L190,14 L197,14 L197,22 L207,22 L207,32 L220,32 L220,22 L230,22 L230,14 L237,14 L237,8 L241,4 L245,8 L245,14 L252,14 L252,22 L262,22 L262,32 L275,32 L275,24 L282,24 L282,16 L289,16 L289,10 L293,6 L297,10 L297,16 L304,16 L304,24 L313,24 L313,32 L325,32 L325,22 L335,22 L335,16 L341,16 L341,10 L345,6 L349,10 L349,16 L355,16 L355,22 L365,22 L365,32 L378,32 L378,42 L400,42 L400,60 Z"/>
+        </svg>
+        <!-- Animated rider -->
+        <div class="rider-wrap">
+          <div class="rider-bounce">
+            <svg width="80" height="75" viewBox="0 0 80 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Rear wheel -->
+              <circle cx="18" cy="60" r="11" stroke="#C0311A" stroke-width="2.5" fill="#111"/>
+              <circle cx="18" cy="60" r="4" fill="#C0311A"/>
+              <line x1="18" y1="49" x2="18" y2="71" stroke="#C0311A" stroke-width="1.5" opacity="0.5"/>
+              <line x1="7" y1="60" x2="29" y2="60" stroke="#C0311A" stroke-width="1.5" opacity="0.5"/>
+              <!-- Front wheel -->
+              <circle cx="60" cy="60" r="11" stroke="#C0311A" stroke-width="2.5" fill="#111"/>
+              <circle cx="60" cy="60" r="4" fill="#C0311A"/>
+              <line x1="60" y1="49" x2="60" y2="71" stroke="#C0311A" stroke-width="1.5" opacity="0.5"/>
+              <line x1="49" y1="60" x2="71" y2="60" stroke="#C0311A" stroke-width="1.5" opacity="0.5"/>
+              <!-- Bike frame -->
+              <line x1="18" y1="60" x2="38" y2="42" stroke="#666" stroke-width="2.2"/>
+              <line x1="38" y1="42" x2="60" y2="60" stroke="#666" stroke-width="2.2"/>
+              <line x1="38" y1="42" x2="32" y2="60" stroke="#666" stroke-width="2.2"/>
+              <line x1="32" y1="60" x2="18" y2="60" stroke="#666" stroke-width="2.2"/>
+              <!-- Fork -->
+              <line x1="38" y1="42" x2="46" y2="38" stroke="#666" stroke-width="2.2"/>
+              <line x1="46" y1="38" x2="60" y2="60" stroke="#666" stroke-width="2.2"/>
+              <!-- Handlebar -->
+              <line x1="46" y1="38" x2="50" y2="33" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+              <line x1="48" y1="31" x2="53" y2="36" stroke="#888" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Seat post -->
+              <line x1="38" y1="42" x2="32" y2="38" stroke="#666" stroke-width="2"/>
+              <line x1="29" y1="37" x2="35" y2="37" stroke="#888" stroke-width="3" stroke-linecap="round"/>
+              <!-- Delivery bag on back -->
+              <rect x="8" y="22" width="16" height="16" rx="2.5" fill="#B8913A" stroke="#8B6914" stroke-width="1.5"/>
+              <line x1="11" y1="22" x2="11" y2="38" stroke="#8B6914" stroke-width="1" opacity="0.6"/>
+              <line x1="16" y1="22" x2="16" y2="38" stroke="#8B6914" stroke-width="1" opacity="0.6"/>
+              <line x1="8" y1="30" x2="24" y2="30" stroke="#8B6914" stroke-width="1" opacity="0.4"/>
+              <!-- Rider torso (leaning forward) -->
+              <ellipse cx="36" cy="27" rx="7" ry="9" fill="#C0311A" transform="rotate(-15 36 27)"/>
+              <!-- Helmet -->
+              <ellipse cx="38" cy="17" rx="9" ry="7.5" fill="#1A2B4A"/>
+              <path d="M29 19 Q38 12 47 19" fill="none" stroke="#C0311A" stroke-width="1.5"/>
+              <!-- Visor -->
+              <path d="M30 20 L46 20" stroke="#88AACC" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+              <!-- Arms reaching forward -->
+              <line x1="38" y1="28" x2="50" y2="33" stroke="#C0311A" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Pedaling legs -->
+              <line x1="36" y1="34" x2="28" y2="46" stroke="#C0311A" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="36" y1="34" x2="40" y2="48" stroke="#9B2614" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="road-line"></div>
+        <div class="road-dashes"></div>
+      </div>
+      <p class="lstate-txt" data-i="loading">Redirecting to secure payment…</p>
+      <p class="lstate-sub">Your letter will be generated instantly after payment</p>
+    </div>
   </div>
 </div>
 
@@ -282,18 +553,22 @@ footer strong{color:var(--ink)}
   </div>
 </div>
 
-<footer><strong>FightBack NYC</strong> — <span data-i="foot">Informational tool based on NYC Local Law 34 of 2026. Not legal advice. For complex disputes, consult a licensed labor attorney.</span></footer>
+<footer><img src="logo-transparent.png" alt="FightBack NYC" style="height:36px;width:auto;opacity:0.6;display:block;margin:0 auto 12px"/><strong>FightBack NYC</strong> — <span data-i="foot">Informational tool based on NYC Local Law 34 of 2026. Not legal advice. For complex disputes, consult a licensed labor attorney.</span></footer>
 
 <script>
-const FLAGS={en:'🇺🇸',es:'🇪🇸',ru:'🇷🇺',hi:'🇮🇳',bn:'🇧🇩',ne:'🇳🇵',uz:'🇺🇿'};
+// ── NO API KEYS HERE — all keys are server-side in Netlify functions ──
+
+const FLAGS={en:'🇺🇸',es:'🇪🇸',ru:'🇷🇺',hi:'🇮🇳',bn:'🇧🇩',ne:'🇳🇵',uz:'🇺🇿',pa:'🇮🇳',tr:'🇹🇷'};
 const T={
-en:{badge:'NYC Local Law 34 · 2026',h1a:'They took your',h1b:'account.',h1c:'Take it back.',hdesc:'Generate a legally aggressive appeal letter in under 2 minutes — based on NYC law that fines platforms $2,500 per violation. No lawyer needed.',cta:'Start my appeal',s1:'Fine per wrongful deactivation',s2:'Notice the platform must give you',s3:'Back pay rights if deactivation was wrongful',lt:'NYC Local Law 34 of 2026',ld:'Protects app-based delivery workers from sudden, unexplained account deactivations.',how:'How it works',s1t:'Tell us what happened',s1d:'Fill in your basic info and describe the deactivation in your own words. Takes about 2 minutes.',s2t:'Upload your screenshot',s2d:'Optional but powerful. We read the exact error message and use it as evidence against the platform.',s3t:'Get your legal letter',s3d:'A formal appeal letter citing NYC law, demanding reinstatement and back pay. Ready to send.',ftitle:'Build your appeal letter',fsub:'All fields marked * are required. Your information is never stored.',ln:'Full name',lp:'Platform',le:'Email address',lph:'Phone (optional)',lid:'Courier / Account ID',ldt:'Deactivation date',lst:'What happened — your side',lup:'Screenshot of deactivation notice (optional but recommended)',sp:'Select platform',so:'Other',phst:"e.g. My account was locked with no warning. I have a 4.9 star rating and 1,400+ deliveries. I never received any prior warnings. The message just said 'you violated our terms' with nothing specific…",ut:'Tap to upload screenshot',us:'JPG, PNG, HEIC — any screenshot of the ban screen',prt:'Instant Legal Appeal Letter',prs:'Formatted, legally cited, ready to send',prn:'one-time',bgen:'Generate my appeal letter →',t1:'References NYC Local Law 34',t2:'Demands back pay',t3:'DCWP complaint language',t4:'Your info stays private',loading:'Analyzing your case and writing your letter…',otitle:'Your appeal letter is ready',bdl:'Download .txt',bcopy:'Copy letter',bcopysm:'Copy',lbar:'⚖ FORMAL APPEAL — NYC LOCAL LAW 34 / 2026',brestart:'Start a new letter',foot:'Informational tool based on NYC Local Law 34 of 2026. Not legal advice. For complex disputes, consult a licensed labor attorney.',ereq:'Please fill in all required fields (marked *).',eapi:'Something went wrong. Please try again.',copied:'Copied!'},
-es:{badge:'NYC Ley Local 34 · 2026',h1a:'Te quitaron tu',h1b:'cuenta.',h1c:'Recupérala.',hdesc:'Genera una carta de apelación legal en menos de 2 minutos — basada en la ley de NYC que multa a las plataformas $2,500 por violación. Sin abogado.',cta:'Iniciar mi apelación',s1:'Multa por desactivación injustificada',s2:'Aviso que la plataforma debe darte',s3:'Pago retroactivo si la desactivación fue injusta',lt:'NYC Ley Local 34 de 2026',ld:'Protege a los repartidores de desactivaciones repentinas e inexplicadas.',how:'Cómo funciona',s1t:'Cuéntanos qué pasó',s1d:'Completa tu información y describe la desactivación. Toma 2 minutos.',s2t:'Sube tu captura de pantalla',s2d:'Opcional pero poderoso. Usamos el mensaje exacto como evidencia contra la plataforma.',s3t:'Recibe tu carta legal',s3d:'Carta formal citando la ley de NYC, exigiendo reactivación y pago retroactivo.',ftitle:'Crea tu carta de apelación',fsub:'Los campos con * son obligatorios. Tu información nunca se almacena.',ln:'Nombre completo',lp:'Plataforma',le:'Correo electrónico',lph:'Teléfono (opcional)',lid:'ID de courier / cuenta',ldt:'Fecha de desactivación',lst:'Qué pasó — tu versión',lup:'Captura de la desactivación (opcional pero recomendada)',sp:'Selecciona plataforma',so:'Otra',phst:"Ej. Me bloquearon la cuenta sin previo aviso. Tengo calificación 4.9 y más de 1,400 entregas. Nunca recibí advertencias. El mensaje solo decía 'violaste nuestros términos' sin detallar nada…",ut:'Toca para subir captura',us:'JPG, PNG, HEIC — cualquier captura del bloqueo',prt:'Carta de Apelación Legal Instantánea',prs:'Con referencias legales, lista para enviar',prn:'pago único',bgen:'Generar mi carta de apelación →',t1:'Cita la Ley Local 34',t2:'Exige pago retroactivo',t3:'Lenguaje de queja al DCWP',t4:'Tu información es privada',loading:'Analizando tu caso y redactando tu carta…',otitle:'Tu carta de apelación está lista',bdl:'Descargar .txt',bcopy:'Copiar carta',bcopysm:'Copiar',lbar:'⚖ APELACIÓN FORMAL — NYC LEY LOCAL 34 / 2026',brestart:'Crear una nueva carta',foot:'Herramienta informativa basada en la Ley Local 34 de NYC de 2026. No es asesoramiento legal.',ereq:'Por favor completa todos los campos obligatorios (marcados con *).',eapi:'Algo salió mal. Por favor intenta de nuevo.',copied:'¡Copiado!'},
-ru:{badge:'NYC Закон 34 · 2026',h1a:'Они заблокировали',h1b:'ваш аккаунт.',h1c:'Верните его.',hdesc:'Создайте юридическое письмо-апелляцию менее чем за 2 минуты — по закону Нью-Йорка, по которому платформам грозит штраф $2 500 за нарушение.',cta:'Начать апелляцию',s1:'Штраф за незаконную блокировку',s2:'Срок уведомления от платформы',s3:'Право на компенсацию при незаконной блокировке',lt:'NYC Местный закон 34, 2026',ld:'Защищает курьеров от внезапной и необоснованной деактивации аккаунта.',how:'Как это работает',s1t:'Расскажите, что случилось',s1d:'Заполните основную информацию и опишите ситуацию своими словами. Займёт около 2 минут.',s2t:'Загрузите скриншот',s2d:'Необязательно, но важно. Мы читаем точный текст ошибки и используем его как доказательство.',s3t:'Получите юридическое письмо',s3d:'Официальное письмо-апелляция со ссылкой на закон, с требованием восстановления и выплаты.',ftitle:'Создать письмо-апелляцию',fsub:'Поля со * обязательны. Ваши данные не сохраняются.',ln:'Полное имя',lp:'Платформа',le:'Электронная почта',lph:'Телефон (необязательно)',lid:'ID курьера / аккаунта',ldt:'Дата деактивации',lst:'Что произошло — ваша версия',lup:'Скриншот уведомления о деактивации (необязательно, но рекомендуется)',sp:'Выберите платформу',so:'Другое',phst:'Напр.: Мой аккаунт заблокировали без предупреждения. У меня рейтинг 4,9 и более 1 400 доставок. Никаких предупреждений не было. Сообщение просто гласило «вы нарушили условия» без конкретики…',ut:'Нажмите, чтобы загрузить скриншот',us:'JPG, PNG, HEIC — любой скриншот экрана блокировки',prt:'Мгновенное юридическое письмо',prs:'Оформлено, со ссылками на законы, готово к отправке',prn:'разовая оплата',bgen:'Создать моё письмо-апелляцию →',t1:'Ссылка на NYC Закон 34',t2:'Требование компенсации',t3:'Язык жалобы в DCWP',t4:'Ваши данные конфиденциальны',loading:'Анализируем ваше дело и составляем письмо…',otitle:'Ваше письмо-апелляция готово',bdl:'Скачать .txt',bcopy:'Копировать письмо',bcopysm:'Копировать',lbar:'⚖ ОФИЦИАЛЬНАЯ АПЕЛЛЯЦИЯ — NYC ЗАКОН 34 / 2026',brestart:'Создать новое письмо',foot:'Информационный инструмент на основе NYC Закона 34 от 2026. Не является юридической консультацией.',ereq:'Пожалуйста, заполните все обязательные поля (отмеченные *).',eapi:'Что-то пошло не так. Пожалуйста, попробуйте ещё раз.',copied:'Скопировано!'},
-hi:{badge:'NYC स्थानीय कानून 34 · 2026',h1a:'उन्होंने आपका',h1b:'अकाउंट बंद किया।',h1c:'वापस लें।',hdesc:'2 मिनट में कानूनी अपील पत्र बनाएं — NYC कानून के तहत जो प्लेटफॉर्म को $2,500 जुर्माना लगाता है। वकील की जरूरत नहीं।',cta:'अपनी अपील शुरू करें',s1:'गलत निष्क्रियकरण पर जुर्माना',s2:'प्लेटफॉर्म को देनी होगी नोटिस',s3:'गलत ब्लॉकिंग पर वापस वेतन का अधिकार',lt:'NYC स्थानीय कानून 34, 2026',ld:'ऐप-आधारित डिलीवरी वर्कर्स को अचानक, अस्पष्ट अकाउंट निष्क्रियकरण से बचाता है।',how:'यह कैसे काम करता है',s1t:'बताएं क्या हुआ',s1d:'अपनी बेसिक जानकारी भरें और निष्क्रियकरण के बारे में बताएं। लगभग 2 मिनट।',s2t:'स्क्रीनशॉट अपलोड करें',s2d:'वैकल्पिक लेकिन शक्तिशाली। हम सटीक एरर मैसेज पढ़ते हैं और सबूत के रूप में उपयोग करते हैं।',s3t:'कानूनी पत्र प्राप्त करें',s3d:'NYC कानून का हवाला देते हुए औपचारिक अपील पत्र, पुनर्स्थापना और बकाया वेतन की मांग के साथ।',ftitle:'अपना अपील पत्र बनाएं',fsub:'* से चिह्नित सभी फ़ील्ड आवश्यक हैं। आपकी जानकारी कभी संग्रहीत नहीं की जाती।',ln:'पूरा नाम',lp:'प्लेटफॉर्म',le:'ईमेल पता',lph:'फ़ोन (वैकल्पिक)',lid:'कूरियर / अकाउंट ID',ldt:'निष्क्रियकरण की तारीख',lst:'क्या हुआ — आपका पक्ष',lup:'निष्क्रियकरण का स्क्रीनशॉट (वैकल्पिक लेकिन अनुशंसित)',sp:'प्लेटफॉर्म चुनें',so:'अन्य',phst:"उदा. बिना किसी चेतावनी के मेरा अकाउंट बंद कर दिया गया। मेरी 4.9 स्टार रेटिंग है और 1,400+ डिलीवरी हैं। कोई पूर्व चेतावनी नहीं मिली। संदेश में केवल लिखा था 'आपने नियमों का उल्लंघन किया' — कोई विशेष कारण नहीं…",ut:'स्क्रीनशॉट अपलोड करने के लिए टैप करें',us:'JPG, PNG, HEIC — बैन स्क्रीन का कोई भी स्क्रीनशॉट',prt:'तुरंत कानूनी अपील पत्र',prs:'फॉर्मेट किया हुआ, कानूनी संदर्भ सहित, भेजने के लिए तैयार',prn:'एकमुश्त',bgen:'मेरा अपील पत्र बनाएं →',t1:'NYC LL 34 का संदर्भ',t2:'बकाया वेतन की मांग',t3:'DCWP शिकायत भाषा',t4:'आपकी जानकारी निजी रहती है',loading:'आपके मामले का विश्लेषण और पत्र लिखा जा रहा है…',otitle:'आपका अपील पत्र तैयार है',bdl:'.txt डाउनलोड करें',bcopy:'पत्र कॉपी करें',bcopysm:'कॉपी',lbar:'⚖ औपचारिक अपील — NYC LL 34 / 2026',brestart:'नया पत्र शुरू करें',foot:'NYC स्थानीय कानून 34, 2026 पर आधारित सूचनात्मक उपकरण। कानूनी सलाह नहीं।',ereq:'कृपया सभी आवश्यक फ़ील्ड (* से चिह्नित) भरें।',eapi:'कुछ गलत हो गया। कृपया फिर से प्रयास करें।',copied:'कॉपी हो गया!'},
-bn:{badge:'NYC স্থানীয় আইন ৩৪ · ২০২৬',h1a:'তারা আপনার',h1b:'অ্যাকাউন্ট বন্ধ করেছে।',h1c:'ফিরিয়ে নিন।',hdesc:'২ মিনিটের মধ্যে একটি আইনি আপিল চিঠি তৈরি করুন — NYC আইনের ভিত্তিতে যা প্রতিটি লঙ্ঘনে $২,৫০০ জরিমানা করে। আইনজীবীর প্রয়োজন নেই।',cta:'আমার আপিল শুরু করুন',s1:'ভুল নিষ্ক্রিয়করণে জরিমানা',s2:'প্ল্যাটফর্মকে দিতে হবে নোটিশ',s3:'ভুল ব্লকিংয়ে বকেয়া বেতনের অধিকার',lt:'NYC স্থানীয় আইন ৩৪, ২০২৬',ld:'অ্যাপ-ভিত্তিক ডেলিভারি কর্মীদের হঠাৎ, অস্পষ্ট অ্যাকাউন্ট নিষ্ক্রিয়করণ থেকে রক্ষা করে।',how:'এটি কীভাবে কাজ করে',s1t:'কী হয়েছে জানান',s1d:'আপনার মূল তথ্য পূরণ করুন এবং নিজের ভাষায় নিষ্ক্রিয়করণ বর্ণনা করুন। প্রায় ২ মিনিট লাগে।',s2t:'স্ক্রিনশট আপলোড করুন',s2d:'ঐচ্ছিক কিন্তু শক্তিশালী। আমরা সঠিক ত্রুটি বার্তাটি পড়ি এবং প্রমাণ হিসেবে ব্যবহার করি।',s3t:'আইনি চিঠি পান',s3d:'NYC আইন উদ্ধৃত করে আনুষ্ঠানিক আপিল চিঠি, পুনর্বহাল এবং বকেয়া বেতনের দাবি সহ।',ftitle:'আপনার আপিল চিঠি তৈরি করুন',fsub:'* চিহ্নিত সমস্ত ক্ষেত্র প্রয়োজনীয়। আপনার তথ্য কখনও সংরক্ষণ করা হয় না।',ln:'পূর্ণ নাম',lp:'প্ল্যাটফর্ম',le:'ইমেইল ঠিকানা',lph:'ফোন (ঐচ্ছিক)',lid:'কুরিয়ার / অ্যাকাউন্ট ID',ldt:'নিষ্ক্রিয়করণের তারিখ',lst:'কী হয়েছে — আপনার পক্ষ',lup:'নিষ্ক্রিয়করণের স্ক্রিনশট (ঐচ্ছিক কিন্তু প্রস্তাবিত)',sp:'প্ল্যাটফর্ম বেছে নিন',so:'অন্য',phst:'উদা. কোনো সতর্কতা ছাড়াই আমার অ্যাকাউন্ট বন্ধ করা হয়েছে। আমার ৪.৯ স্টার রেটিং এবং ১,৪০০+ ডেলিভারি আছে। কোনো পূর্ব সতর্কতা পাইনি। বার্তায় শুধু লেখা ছিল আপনি নিয়ম লঙ্ঘন করেছেন — কোনো নির্দিষ্ট কারণ ছাড়াই…',ut:'স্ক্রিনশট আপলোড করতে ট্যাপ করুন',us:'JPG, PNG, HEIC — ব্যান স্ক্রিনের যেকোনো স্ক্রিনশট',prt:'তাৎক্ষণিক আইনি আপিল চিঠি',prs:'ফর্ম্যাট করা, আইনি তথ্যসূত্র সহ, পাঠাতে প্রস্তুত',prn:'একবারের পেমেন্ট',bgen:'আমার আপিল চিঠি তৈরি করুন →',t1:'NYC LL ৩৪ উদ্ধৃত করে',t2:'বকেয়া বেতনের দাবি',t3:'DCWP অভিযোগের ভাষা',t4:'আপনার তথ্য গোপন থাকে',loading:'আপনার মামলা বিশ্লেষণ করা এবং চিঠি লেখা হচ্ছে…',otitle:'আপনার আপিল চিঠি প্রস্তুত',bdl:'.txt ডাউনলোড করুন',bcopy:'চিঠি কপি করুন',bcopysm:'কপি',lbar:'⚖ আনুষ্ঠানিক আপিল — NYC LL ৩৪ / ২০২৬',brestart:'নতুন চিঠি শুরু করুন',foot:'NYC স্থানীয় আইন ৩৪, ২০২৬ ভিত্তিক তথ্যমূলক সরঞ্জাম। আইনি পরামর্শ নয়।',ereq:'দয়া করে সমস্ত প্রয়োজনীয় ক্ষেত্র (* চিহ্নিত) পূরণ করুন।',eapi:'কিছু ভুল হয়েছে। দয়া করে আবার চেষ্টা করুন।',copied:'কপি হয়েছে!'},
-ne:{badge:'NYC स्थानीय कानून ३४ · २०२६',h1a:'तिनीहरूले तपाईंको',h1b:'अकाउन्ट बन्द गरे।',h1c:'फिर्ता लिनुस्।',hdesc:'२ मिनेटमा कानूनी अपिल पत्र बनाउनुस् — NYC कानूनमा आधारित जसले प्लेटफर्मलाई $२,५०० जरिवाना लगाउँछ। वकिलको आवश्यकता छैन।',cta:'मेरो अपिल सुरु गर्नुस्',s1:'गलत निष्क्रियकरणमा जरिवाना',s2:'प्लेटफर्मले दिनुपर्ने सूचना',s3:'गलत ब्लकिङमा बाँकी तलबको अधिकार',lt:'NYC स्थानीय कानून ३४, २०२६',ld:'एप-आधारित डेलिभरी कामदारहरूलाई अचानक, अस्पष्ट अकाउन्ट निष्क्रियकरणबाट जोगाउँछ।',how:'यसले कसरी काम गर्छ',s1t:'के भयो भन्नुस्',s1d:'आफ्नो आधारभूत जानकारी भर्नुस् र आफ्नै शब्दमा निष्क्रियकरण वर्णन गर्नुस्। लगभग २ मिनेट।',s2t:'स्क्रिनसट अपलोड गर्नुस्',s2d:'वैकल्पिक तर शक्तिशाली। हामी सटीक त्रुटि सन्देश पढ्छौं र प्रमाणको रूपमा प्रयोग गर्छौं।',s3t:'कानूनी पत्र प्राप्त गर्नुस्',s3d:'NYC कानून उद्धृत गर्दै औपचारिक अपिल पत्र, पुनर्स्थापना र बाँकी तलबको माग सहित।',ftitle:'आफ्नो अपिल पत्र बनाउनुस्',fsub:'* चिन्हित सबै क्षेत्रहरू आवश्यक छन्। तपाईंको जानकारी कहिल्यै भण्डारण गरिँदैन।',ln:'पूरा नाम',lp:'प्लेटफर्म',le:'इमेल ठेगाना',lph:'फोन (वैकल्पिक)',lid:'कुरियर / अकाउन्ट ID',ldt:'निष्क्रियकरणको मिति',lst:'के भयो — तपाईंको पक्ष',lup:'निष्क्रियकरणको स्क्रिनसट (वैकल्पिक तर सिफारिस गरिएको)',sp:'प्लेटफर्म छान्नुस्',so:'अन्य',phst:"उदा. कुनै चेतावनी बिना मेरो अकाउन्ट बन्द गरियो। मेरो ४.९ स्टार रेटिङ र १,४००+ डेलिभरी छ। कुनै पूर्व चेतावनी पाइनँ। सन्देशमा मात्र लेखिएको थियो 'तपाईंले नियम उल्लंघन गर्नुभयो' — कुनै विशेष कारण बिना…",ut:'स्क्रिनसट अपलोड गर्न ट्याप गर्नुस्',us:'JPG, PNG, HEIC — ब्यान स्क्रिनको जुनसुकै स्क्रिनसट',prt:'तुरुन्त कानूनी अपिल पत्र',prs:'ढाँचा सहित, कानूनी सन्दर्भ सहित, पठाउन तयार',prn:'एकमुस्त भुक्तानी',bgen:'मेरो अपिल पत्र बनाउनुस् →',t1:'NYC LL ३४ को सन्दर्भ',t2:'बाँकी तलबको माग',t3:'DCWP उजुरी भाषा',t4:'तपाईंको जानकारी निजी रहन्छ',loading:'तपाईंको मामला विश्लेषण र पत्र लेखिँदैछ…',otitle:'तपाईंको अपिल पत्र तयार छ',bdl:'.txt डाउनलोड गर्नुस्',bcopy:'पत्र कपी गर्नुस्',bcopysm:'कपी',lbar:'⚖ औपचारिक अपिल — NYC LL ३४ / २०२६',brestart:'नयाँ पत्र सुरु गर्नुस्',foot:'NYC स्थानीय कानून ३४, २०२६ मा आधारित सूचनात्मक उपकरण। कानूनी सल्लाह होइन।',ereq:'कृपया सबै आवश्यक क्षेत्रहरू (* चिन्हित) भर्नुस्।',eapi:'केही गलत भयो। कृपया फेरि प्रयास गर्नुस्।',copied:'कपी भयो!'},
-uz:{badge:"NYC Mahalliy qonun 34 · 2026",h1a:"Ular sizning",h1b:"hisobingizni blokladi.",h1c:"Uni qaytarib oling.",hdesc:"2 daqiqadan kam vaqtda huquqiy shikoyat xatini yarating — NYC qonuniga asoslanib, har bir qoidabuzarlik uchun platformalarga $2 500 jarima soliladi. Advokatga ehtiyoj yo'q.",cta:"Shikoyatimni boshlash",s1:"Noto'g'ri bloklash uchun jarima",s2:"Platforma berishi shart bo'lgan xabarnoma",s3:"Noto'g'ri bloklash uchun to'liq ish haqi huquqi",lt:"NYC Mahalliy qonun 34, 2026",ld:"Ilova orqali ishlaydigan yetkazib beruvchilarni to'satdan, asossiz hisob bloklashidan himoya qiladi.",how:"Qanday ishlaydi",s1t:"Nima bo'lganini ayting",s1d:"Asosiy ma'lumotlaringizni kiriting va bloklashni o'z so'zlaringiz bilan tasvirlang. Taxminan 2 daqiqa.",s2t:"Skrinshot yuklang",s2d:"Ixtiyoriy, lekin kuchli. Biz xato xabarini aniq o'qiymiz va uni platforma qarshi dalil sifatida ishlatamiz.",s3t:"Huquqiy xatni oling",s3d:"NYC qonuniga havola qilib rasmiy shikoyat xati, tiklash va to'lanmagan ish haqini talab qilish bilan.",ftitle:"Shikoyat xatingizni yarating",fsub:"* bilan belgilangan barcha maydonlar to'ldirilishi shart. Ma'lumotlaringiz hech qachon saqlanmaydi.",ln:"To'liq ism",lp:"Platforma",le:"Elektron pochta",lph:"Telefon (ixtiyoriy)",lid:"Kuryer / hisob ID",ldt:"Bloklash sanasi",lst:"Nima bo'ldi — sizning tomoningiz",lup:"Bloklash xabarnomasining skrinshotini yuklang (ixtiyoriy, lekin tavsiya etiladi)",sp:"Platformani tanlang",so:"Boshqa",phst:"Mas. Mening hisobim ogohlantirmasiz bloklandi. Mening reytingim 4.9 va 1400+ yetkazib berishlarim bor. Hech qanday oldindan ogohlantirish olmadim. Xabarda shunchaki 'siz qoidalarni buzgansiz' deb yozilgan edi — hech qanday aniq sabab ko'rsatilmagan…",ut:"Skrinshot yuklash uchun bosing",us:"JPG, PNG, HEIC — bloklash ekranining istalgan skrinshotini",prt:"Tezkor huquqiy shikoyat xati",prs:"Formatlangan, huquqiy havolali, yuborishga tayyor",prn:"bir martalik to'lov",bgen:"Shikoyat xatimni yaratish →",t1:"NYC LL 34 ga havola",t2:"To'lanmagan ish haqini talab qilish",t3:"DCWP shikoyat tili",t4:"Ma'lumotlaringiz maxfiy qoladi",loading:"Ishingiz tahlil qilinmoqda va xatingiz yozilmoqda…",otitle:"Shikoyat xatingiz tayyor",bdl:".txt yuklab olish",bcopy:"Xatni nusxalash",bcopysm:"Nusxalash",lbar:"⚖ RASMIY SHIKOYAT — NYC LL 34 / 2026",brestart:"Yangi xat boshlash",foot:"NYC Mahalliy qonun 34, 2026 asosidagi ma'lumot vositasi. Huquqiy maslahat emas.",ereq:"Iltimos, barcha majburiy maydonlarni (* bilan belgilangan) to'ldiring.",eapi:"Nimadir noto'g'ri ketdi. Iltimos, qayta urinib ko'ring.",copied:"Nusxalandi!"}
+en:{badge:'NYC Local Law 34 · 2026',h1a:'They took your',h1b:'account.',h1c:'Take it back.',hdesc:'Generate a legally aggressive appeal letter in under 2 minutes — based on NYC law that fines platforms $2,500 per violation. No lawyer needed.',cta:'Start my appeal',s1:'Fine per wrongful deactivation',s2:'Notice the platform must give you',s3:'Back pay rights if deactivation was wrongful',lt:'NYC Local Law 34 of 2026',ld:'Protects app-based delivery workers from sudden, unexplained account deactivations.',how:'How it works',s1t:'Tell us what happened',s1d:'Fill in your basic info and describe the deactivation in your own words. Takes about 2 minutes.',s2t:'Upload your screenshot',s2d:'Optional but powerful. We read the exact error message and use it as evidence against the platform.',s3t:'Get your legal letter',s3d:'A formal appeal letter citing NYC law, demanding reinstatement and back pay. Ready to send.',ftitle:'Build your appeal letter',fsub:'All fields marked * are required. Your information is never stored.',ln:'Full name',lp:'Platform',le:'Email address',lph:'Phone (optional)',lid:'Courier / Account ID',ldt:'Deactivation date',lst:'What happened — your side',lup:'Screenshot of deactivation notice (optional but recommended)',sp:'Select platform',so:'Other',phst:"e.g. My account was locked with no warning. I have a 4.9 star rating and 1,400+ deliveries. I never received any prior warnings. The message just said 'you violated our terms' with nothing specific…",ut:'Tap to upload screenshot',us:'JPG, PNG, HEIC — any screenshot of the ban screen',prt:'Instant Legal Appeal Letter',prs:'Formatted, legally cited, ready to send',prn:'one-time',bgen:'Generate my appeal letter →',t1:'References NYC Local Law 34',t2:'Demands back pay',t3:'DCWP complaint language',t4:'Your info stays private',loading:'Redirecting to secure payment…',otitle:'Your appeal letter is ready',bdl:'Download .txt',bcopy:'Copy letter',bcopysm:'Copy',lbar:'⚖ FORMAL APPEAL — NYC LOCAL LAW 34 / 2026',brestart:'Start a new letter',foot:'Informational tool based on NYC Local Law 34 of 2026. Not legal advice. For complex disputes, consult a licensed labor attorney.',ereq:'Please fill in all required fields (marked *).',eapi:'Something went wrong. Please try again or email Support@fightbacknyc.net',copied:'Copied!'},
+es:{badge:'NYC Ley Local 34 · 2026',h1a:'Te quitaron tu',h1b:'cuenta.',h1c:'Recupérala.',hdesc:'Genera una carta de apelación legal en menos de 2 minutos — basada en la ley de NYC que multa a las plataformas $2,500 por violación. Sin abogado.',cta:'Iniciar mi apelación',s1:'Multa por desactivación injustificada',s2:'Aviso que la plataforma debe darte',s3:'Pago retroactivo si la desactivación fue injusta',lt:'NYC Ley Local 34 de 2026',ld:'Protege a los repartidores de desactivaciones repentinas e inexplicadas.',how:'Cómo funciona',s1t:'Cuéntanos qué pasó',s1d:'Completa tu información y describe la desactivación. Toma 2 minutos.',s2t:'Sube tu captura de pantalla',s2d:'Opcional pero poderoso. Usamos el mensaje exacto como evidencia contra la plataforma.',s3t:'Recibe tu carta legal',s3d:'Carta formal citando la ley de NYC, exigiendo reactivación y pago retroactivo.',ftitle:'Crea tu carta de apelación',fsub:'Los campos con * son obligatorios. Tu información nunca se almacena.',ln:'Nombre completo',lp:'Plataforma',le:'Correo electrónico',lph:'Teléfono (opcional)',lid:'ID de courier / cuenta',ldt:'Fecha de desactivación',lst:'Qué pasó — tu versión',lup:'Captura de la desactivación (opcional pero recomendada)',sp:'Selecciona plataforma',so:'Otra',phst:"Ej. Me bloquearon la cuenta sin previo aviso. Tengo calificación 4.9 y más de 1,400 entregas. Nunca recibí advertencias. El mensaje solo decía 'violaste nuestros términos' sin detallar nada…",ut:'Toca para subir captura',us:'JPG, PNG, HEIC — cualquier captura del bloqueo',prt:'Carta de Apelación Legal Instantánea',prs:'Con referencias legales, lista para enviar',prn:'pago único',bgen:'Generar mi carta de apelación →',t1:'Cita la Ley Local 34',t2:'Exige pago retroactivo',t3:'Lenguaje de queja al DCWP',t4:'Tu información es privada',loading:'Redirigiendo al pago seguro…',otitle:'Tu carta de apelación está lista',bdl:'Descargar .txt',bcopy:'Copiar carta',bcopysm:'Copiar',lbar:'⚖ APELACIÓN FORMAL — NYC LEY LOCAL 34 / 2026',brestart:'Crear una nueva carta',foot:'Herramienta informativa basada en la Ley Local 34 de NYC de 2026. No es asesoramiento legal.',ereq:'Por favor completa todos los campos obligatorios (marcados con *).',eapi:'Algo salió mal. Intenta de nuevo o escribe a Support@fightbacknyc.net',copied:'¡Copiado!'},
+ru:{badge:'NYC Закон 34 · 2026',h1a:'Они заблокировали',h1b:'ваш аккаунт.',h1c:'Верните его.',hdesc:'Создайте юридическое письмо-апелляцию менее чем за 2 минуты — по закону Нью-Йорка, по которому платформам грозит штраф $2 500 за нарушение.',cta:'Начать апелляцию',s1:'Штраф за незаконную блокировку',s2:'Срок уведомления от платформы',s3:'Право на компенсацию при незаконной блокировке',lt:'NYC Местный закон 34, 2026',ld:'Защищает курьеров от внезапной и необоснованной деактивации аккаунта.',how:'Как это работает',s1t:'Расскажите, что случилось',s1d:'Заполните основную информацию и опишите ситуацию своими словами. Займёт около 2 минут.',s2t:'Загрузите скриншот',s2d:'Необязательно, но важно. Мы читаем точный текст ошибки и используем его как доказательство.',s3t:'Получите юридическое письмо',s3d:'Официальное письмо-апелляция со ссылкой на закон, с требованием восстановления и выплаты.',ftitle:'Создать письмо-апелляцию',fsub:'Поля со * обязательны. Ваши данные не сохраняются.',ln:'Полное имя',lp:'Платформа',le:'Электронная почта',lph:'Телефон (необязательно)',lid:'ID курьера / аккаунта',ldt:'Дата деактивации',lst:'Что произошло — ваша версия',lup:'Скриншот уведомления о деактивации (необязательно, но рекомендуется)',sp:'Выберите платформу',so:'Другое',phst:'Напр.: Мой аккаунт заблокировали без предупреждения. У меня рейтинг 4,9 и более 1 400 доставок. Никаких предупреждений не было. Сообщение просто гласило «вы нарушили условия» без конкретики…',ut:'Нажмите, чтобы загрузить скриншот',us:'JPG, PNG, HEIC — любой скриншот экрана блокировки',prt:'Мгновенное юридическое письмо',prs:'Оформлено, со ссылками на законы, готово к отправке',prn:'разовая оплата',bgen:'Создать моё письмо-апелляцию →',t1:'Ссылка на NYC Закон 34',t2:'Требование компенсации',t3:'Язык жалобы в DCWP',t4:'Ваши данные конфиденциальны',loading:'Перенаправление на безопасную оплату…',otitle:'Ваше письмо-апелляция готово',bdl:'Скачать .txt',bcopy:'Копировать письмо',bcopysm:'Копировать',lbar:'⚖ ОФИЦИАЛЬНАЯ АПЕЛЛЯЦИЯ — NYC ЗАКОН 34 / 2026',brestart:'Создать новое письмо',foot:'Информационный инструмент на основе NYC Закона 34 от 2026. Не является юридической консультацией.',ereq:'Пожалуйста, заполните все обязательные поля (отмеченные *).',eapi:'Что-то пошло не так. Попробуйте ещё раз или напишите на Support@fightbacknyc.net',copied:'Скопировано!'},
+hi:{badge:'NYC स्थानीय कानून 34 · 2026',h1a:'उन्होंने आपका',h1b:'अकाउंट बंद किया।',h1c:'वापस लें।',hdesc:'2 मिनट में कानूनी अपील पत्र बनाएं — NYC कानून के तहत जो प्लेटफॉर्म को $2,500 जुर्माना लगाता है। वकील की जरूरत नहीं।',cta:'अपनी अपील शुरू करें',s1:'गलत निष्क्रियकरण पर जुर्माना',s2:'प्लेटफॉर्म को देनी होगी नोटिस',s3:'गलत ब्लॉकिंग पर वापस वेतन का अधिकार',lt:'NYC स्थानीय कानून 34, 2026',ld:'ऐप-आधारित डिलीवरी वर्कर्स को अचानक, अस्पष्ट अकाउंट निष्क्रियकरण से बचाता है।',how:'यह कैसे काम करता है',s1t:'बताएं क्या हुआ',s1d:'अपनी बेसिक जानकारी भरें और निष्क्रियकरण के बारे में बताएं। लगभग 2 मिनट।',s2t:'स्क्रीनशॉट अपलोड करें',s2d:'वैकल्पिक लेकिन शक्तिशाली। हम सटीक एरर मैसेज पढ़ते हैं और सबूत के रूप में उपयोग करते हैं।',s3t:'कानूनी पत्र प्राप्त करें',s3d:'NYC कानून का हवाला देते हुए औपचारिक अपील पत्र, पुनर्स्थापना और बकाया वेतन की मांग के साथ।',ftitle:'अपना अपील पत्र बनाएं',fsub:'* से चिह्नित सभी फ़ील्ड आवश्यक हैं। आपकी जानकारी कभी संग्रहीत नहीं की जाती।',ln:'पूरा नाम',lp:'प्लेटफॉर्म',le:'ईमेल पता',lph:'फ़ोन (वैकल्पिक)',lid:'कूरियर / अकाउंट ID',ldt:'निष्क्रियकरण की तारीख',lst:'क्या हुआ — आपका पक्ष',lup:'निष्क्रियकरण का स्क्रीनशॉट (वैकल्पिक लेकिन अनुशंसित)',sp:'प्लेटफॉर्म चुनें',so:'अन्य',phst:"उदा. बिना किसी चेतावनी के मेरा अकाउंट बंद कर दिया गया। मेरी 4.9 स्टार रेटिंग है और 1,400+ डिलीवरी हैं। कोई पूर्व चेतावनी नहीं मिली। संदेश में केवल लिखा था 'आपने नियमों का उल्लंघन किया' — कोई विशेष कारण नहीं…",ut:'स्क्रीनशॉट अपलोड करने के लिए टैप करें',us:'JPG, PNG, HEIC — बैन स्क्रीन का कोई भी स्क्रीनशॉट',prt:'तुरंत कानूनी अपील पत्र',prs:'फॉर्मेट किया हुआ, कानूनी संदर्भ सहित, भेजने के लिए तैयार',prn:'एकमुश्त',bgen:'मेरा अपील पत्र बनाएं →',t1:'NYC LL 34 का संदर्भ',t2:'बकाया वेतन की मांग',t3:'DCWP शिकायत भाषा',t4:'आपकी जानकारी निजी रहती है',loading:'सुरक्षित भुगतान पर भेजा जा रहा है…',otitle:'आपका अपील पत्र तैयार है',bdl:'.txt डाउनलोड करें',bcopy:'पत्र कॉपी करें',bcopysm:'कॉपी',lbar:'⚖ औपचारिक अपील — NYC LL 34 / 2026',brestart:'नया पत्र शुरू करें',foot:'NYC स्थानीय कानून 34, 2026 पर आधारित सूचनात्मक उपकरण। कानूनी सलाह नहीं।',ereq:'कृपया सभी आवश्यक फ़ील्ड (* से चिह्नित) भरें।',eapi:'कुछ गलत हो गया। फिर से प्रयास करें या Support@fightbacknyc.net पर लिखें।',copied:'कॉपी हो गया!'},
+bn:{badge:'NYC স্থানীয় আইন ৩৪ · ২০২৬',h1a:'তারা আপনার',h1b:'অ্যাকাউন্ট বন্ধ করেছে।',h1c:'ফিরিয়ে নিন।',hdesc:'২ মিনিটের মধ্যে একটি আইনি আপিল চিঠি তৈরি করুন — NYC আইনের ভিত্তিতে যা প্রতিটি লঙ্ঘনে $২,৫০০ জরিমানা করে। আইনজীবীর প্রয়োজন নেই।',cta:'আমার আপিল শুরু করুন',s1:'ভুল নিষ্ক্রিয়করণে জরিমানা',s2:'প্ল্যাটফর্মকে দিতে হবে নোটিশ',s3:'ভুল ব্লকিংয়ে বকেয়া বেতনের অধিকার',lt:'NYC স্থানীয় আইন ৩৪, ২০২৬',ld:'অ্যাপ-ভিত্তিক ডেলিভারি কর্মীদের হঠাৎ, অস্পষ্ট অ্যাকাউন্ট নিষ্ক্রিয়করণ থেকে রক্ষা করে।',how:'এটি কীভাবে কাজ করে',s1t:'কী হয়েছে জানান',s1d:'আপনার মূল তথ্য পূরণ করুন এবং নিজের ভাষায় নিষ্ক্রিয়করণ বর্ণনা করুন। প্রায় ২ মিনিট লাগে।',s2t:'স্ক্রিনশট আপলোড করুন',s2d:'ঐচ্ছিক কিন্তু শক্তিশালী। আমরা সঠিক ত্রুটি বার্তাটি পড়ি এবং প্রমাণ হিসেবে ব্যবহার করি।',s3t:'আইনি চিঠি পান',s3d:'NYC আইন উদ্ধৃত করে আনুষ্ঠানিক আপিল চিঠি, পুনর্বহাল এবং বকেয়া বেতনের দাবি সহ।',ftitle:'আপনার আপিল চিঠি তৈরি করুন',fsub:'* চিহ্নিত সমস্ত ক্ষেত্র প্রয়োজনীয়। আপনার তথ্য কখনও সংরক্ষণ করা হয় না।',ln:'পূর্ণ নাম',lp:'প্ল্যাটফর্ম',le:'ইমেইল ঠিকানা',lph:'ফোন (ঐচ্ছিক)',lid:'কুরিয়ার / অ্যাকাউন্ট ID',ldt:'নিষ্ক্রিয়করণের তারিখ',lst:'কী হয়েছে — আপনার পক্ষ',lup:'নিষ্ক্রিয়করণের স্ক্রিনশট (ঐচ্ছিক কিন্তু প্রস্তাবিত)',sp:'প্ল্যাটফর্ম বেছে নিন',so:'অন্য',phst:'উদা. কোনো সতর্কতা ছাড়াই আমার অ্যাকাউন্ট বন্ধ করা হয়েছে। আমার ৪.৯ স্টার রেটিং এবং ১,৪০০+ ডেলিভারি আছে। কোনো পূর্ব সতর্কতা পাইনি।',ut:'স্ক্রিনশট আপলোড করতে ট্যাপ করুন',us:'JPG, PNG, HEIC — ব্যান স্ক্রিনের যেকোনো স্ক্রিনশট',prt:'তাৎক্ষণিক আইনি আপিল চিঠি',prs:'ফর্ম্যাট করা, আইনি তথ্যসূত্র সহ, পাঠাতে প্রস্তুত',prn:'একবারের পেমেন্ট',bgen:'আমার আপিল চিঠি তৈরি করুন →',t1:'NYC LL ৩৪ উদ্ধৃত করে',t2:'বকেয়া বেতনের দাবি',t3:'DCWP অভিযোগের ভাষা',t4:'আপনার তথ্য গোপন থাকে',loading:'নিরাপদ পেমেন্টে পাঠানো হচ্ছে…',otitle:'আপনার আপিল চিঠি প্রস্তুত',bdl:'.txt ডাউনলোড করুন',bcopy:'চিঠি কপি করুন',bcopysm:'কপি',lbar:'⚖ আনুষ্ঠানিক আপিল — NYC LL ৩৪ / ২০২৬',brestart:'নতুন চিঠি শুরু করুন',foot:'NYC স্থানীয় আইন ৩৪, ২০২৬ ভিত্তিক তথ্যমূলক সরঞ্জাম। আইনি পরামর্শ নয়।',ereq:'দয়া করে সমস্ত প্রয়োজনীয় ক্ষেত্র (* চিহ্নিত) পূরণ করুন।',eapi:'কিছু ভুল হয়েছে। আবার চেষ্টা করুন বা Support@fightbacknyc.net এ লিখুন।',copied:'কপি হয়েছে!'},
+ne:{badge:'NYC स्थानीय कानून ३४ · २०२६',h1a:'तिनीहरूले तपाईंको',h1b:'अकाउन्ट बन्द गरे।',h1c:'फिर्ता लिनुस्।',hdesc:'२ मिनेटमा कानूनी अपिल पत्र बनाउनुस् — NYC कानूनमा आधारित जसले प्लेटफर्मलाई $२,५०० जरिवाना लगाउँछ। वकिलको आवश्यकता छैन।',cta:'मेरो अपिल सुरु गर्नुस्',s1:'गलत निष्क्रियकरणमा जरिवाना',s2:'प्लेटफर्मले दिनुपर्ने सूचना',s3:'गलत ब्लकिङमा बाँकी तलबको अधिकार',lt:'NYC स्थानीय कानून ३४, २०२६',ld:'एप-आधारित डेलिभरी कामदारहरूलाई अचानक, अस्पष्ट अकाउन्ट निष्क्रियकरणबाट जोगाउँछ।',how:'यसले कसरी काम गर्छ',s1t:'के भयो भन्नुस्',s1d:'आफ्नो आधारभूत जानकारी भर्नुस् र आफ्नै शब्दमा निष्क्रियकरण वर्णन गर्नुस्। लगभग २ मिनेट।',s2t:'स्क्रिनसट अपलोड गर्नुस्',s2d:'वैकल्पिक तर शक्तिशाली। हामी सटीक त्रुटि सन्देश पढ्छौं र प्रमाणको रूपमा प्रयोग गर्छौं।',s3t:'कानूनी पत्र प्राप्त गर्नुस्',s3d:'NYC कानून उद्धृत गर्दै औपचारिक अपिल पत्र, पुनर्स्थापना र बाँकी तलबको माग सहित।',ftitle:'आफ्नो अपिल पत्र बनाउनुस्',fsub:'* चिन्हित सबै क्षेत्रहरू आवश्यक छन्। तपाईंको जानकारी कहिल्यै भण्डारण गरिँदैन।',ln:'पूरा नाम',lp:'प्लेटफर्म',le:'इमेल ठेगाना',lph:'फोन (वैकल्पिक)',lid:'कुरियर / अकाउन्ट ID',ldt:'निष्क्रियकरणको मिति',lst:'के भयो — तपाईंको पक्ष',lup:'निष्क्रियकरणको स्क्रिनसट (वैकल्पिक तर सिफारिस गरिएको)',sp:'प्लेटफर्म छान्नुस्',so:'अन्य',phst:"उदा. कुनै चेतावनी बिना मेरो अकाउन्ट बन्द गरियो। मेरो ४.९ स्टार रेटिङ र १,४००+ डेलिभरी छ।",ut:'स्क्रिनसट अपलोड गर्न ट्याप गर्नुस्',us:'JPG, PNG, HEIC — ब्यान स्क्रिनको जुनसुकै स्क्रिनसट',prt:'तुरुन्त कानूनी अपिल पत्र',prs:'ढाँचा सहित, कानूनी सन्दर्भ सहित, पठाउन तयार',prn:'एकमुस्त भुक्तानी',bgen:'मेरो अपिल पत्र बनाउनुस् →',t1:'NYC LL ३४ को सन्दर्भ',t2:'बाँकी तलबको माग',t3:'DCWP उजुरी भाषा',t4:'तपाईंको जानकारी निजी रहन्छ',loading:'सुरक्षित भुक्तानीमा पठाइँदैछ…',otitle:'तपाईंको अपिल पत्र तयार छ',bdl:'.txt डाउनलोड गर्नुस्',bcopy:'पत्र कपी गर्नुस्',bcopysm:'कपी',lbar:'⚖ औपचारिक अपिल — NYC LL ३४ / २०२६',brestart:'नयाँ पत्र सुरु गर्नुस्',foot:'NYC स्थानीय कानून ३४, २०२६ मा आधारित सूचनात्मक उपकरण। कानूनी सल्लाह होइन।',ereq:'कृपया सबै आवश्यक क्षेत्रहरू (* चिन्हित) भर्नुस्।',eapi:'केही गलत भयो। फेरि प्रयास गर्नुस् वा Support@fightbacknyc.net मा लेख्नुस्।',copied:'कपी भयो!'},
+uz:{badge:"NYC Mahalliy qonun 34 · 2026",h1a:"Ular sizning",h1b:"hisobingizni blokladi.",h1c:"Uni qaytarib oling.",hdesc:"2 daqiqadan kam vaqtda huquqiy shikoyat xatini yarating — NYC qonuniga asoslanib, har bir qoidabuzarlik uchun platformalarga $2 500 jarima soliladi. Advokatga ehtiyoj yo'q.",cta:"Shikoyatimni boshlash",s1:"Noto'g'ri bloklash uchun jarima",s2:"Platforma berishi shart bo'lgan xabarnoma",s3:"Noto'g'ri bloklash uchun to'liq ish haqi huquqi",lt:"NYC Mahalliy qonun 34, 2026",ld:"Ilova orqali ishlaydigan yetkazib beruvchilarni to'satdan, asossiz hisob bloklashidan himoya qiladi.",how:"Qanday ishlaydi",s1t:"Nima bo'lganini ayting",s1d:"Asosiy ma'lumotlaringizni kiriting va bloklashni o'z so'zlaringiz bilan tasvirlang. Taxminan 2 daqiqa.",s2t:"Skrinshot yuklang",s2d:"Ixtiyoriy, lekin kuchli. Biz xato xabarini aniq o'qiymiz va uni platforma qarshi dalil sifatida ishlatamiz.",s3t:"Huquqiy xatni oling",s3d:"NYC qonuniga havola qilib rasmiy shikoyat xati, tiklash va to'lanmagan ish haqini talab qilish bilan.",ftitle:"Shikoyat xatingizni yarating",fsub:"* bilan belgilangan barcha maydonlar to'ldirilishi shart. Ma'lumotlaringiz hech qachon saqlanmaydi.",ln:"To'liq ism",lp:"Platforma",le:"Elektron pochta",lph:"Telefon (ixtiyoriy)",lid:"Kuryer / hisob ID",ldt:"Bloklash sanasi",lst:"Nima bo'ldi — sizning tomoningiz",lup:"Bloklash xabarnomasining skrinshotini yuklang (ixtiyoriy, lekin tavsiya etiladi)",sp:"Platformani tanlang",so:"Boshqa",phst:"Mas. Mening hisobim ogohlantirmasiz bloklandi. Mening reytingim 4.9 va 1400+ yetkazib berishlarim bor.",ut:"Skrinshot yuklash uchun bosing",us:"JPG, PNG, HEIC — bloklash ekranining istalgan skrinshotini",prt:"Tezkor huquqiy shikoyat xati",prs:"Formatlangan, huquqiy havolali, yuborishga tayyor",prn:"bir martalik to'lov",bgen:"Shikoyat xatimni yaratish →",t1:"NYC LL 34 ga havola",t2:"To'lanmagan ish haqini talab qilish",t3:"DCWP shikoyat tili",t4:"Ma'lumotlaringiz maxfiy qoladi",loading:"Xavfsiz to'lovga yo'naltirilmoqda…",otitle:"Shikoyat xatingiz tayyor",bdl:".txt yuklab olish",bcopy:"Xatni nusxalash",bcopysm:"Nusxalash",lbar:"⚖ RASMIY SHIKOYAT — NYC LL 34 / 2026",brestart:"Yangi xat boshlash",foot:"NYC Mahalliy qonun 34, 2026 asosidagi ma'lumot vositasi. Huquqiy maslahat emas.",ereq:"Iltimos, barcha majburiy maydonlarni (* bilan belgilangan) to'ldiring.",eapi:"Nimadir noto'g'ri ketdi. Qayta urining yoki Support@fightbacknyc.net ga yozing.",copied:"Nusxalandi!"},
+pa:{badge:"NYC ਸਥਾਨਕ ਕਾਨੂੰਨ 34 · 2026",h1a:"ਉਨ੍ਹਾਂ ਨੇ ਤੁਹਾਡਾ",h1b:"ਅਕਾਊਂਟ ਬੰਦ ਕੀਤਾ।",h1c:"ਵਾਪਸ ਲਓ।",hdesc:"2 ਮਿੰਟਾਂ ਵਿੱਚ ਕਾਨੂੰਨੀ ਅਪੀਲ ਪੱਤਰ ਬਣਾਓ — NYC ਕਾਨੂੰਨ ਦੇ ਆਧਾਰ ਤੇ ਜੋ ਪਲੇਟਫਾਰਮਾਂ ਨੂੰ ਹਰ ਉਲੰਘਣਾ ਲਈ $2,500 ਜੁਰਮਾਨਾ ਲਗਾਉਂਦਾ ਹੈ। ਵਕੀਲ ਦੀ ਲੋੜ ਨਹੀਂ।",cta:"ਮੇਰੀ ਅਪੀਲ ਸ਼ੁਰੂ ਕਰੋ",s1:"ਗਲਤ ਨਿਸ਼ਕ੍ਰਿਆਕਰਣ ਲਈ ਜੁਰਮਾਨਾ",s2:"ਪਲੇਟਫਾਰਮ ਨੂੰ ਦੇਣਾ ਪਵੇਗਾ ਨੋਟਿਸ",s3:"ਗਲਤ ਬਲਾਕਿੰਗ ਲਈ ਵਾਪਸ ਤਨਖ਼ਾਹ ਦਾ ਅਧਿਕਾਰ",lt:"NYC ਸਥਾਨਕ ਕਾਨੂੰਨ 34, 2026",ld:"ਐਪ-ਆਧਾਰਿਤ ਡਿਲਿਵਰੀ ਕਾਮਿਆਂ ਨੂੰ ਅਚਾਨਕ, ਅਸਪਸ਼ਟ ਅਕਾਊਂਟ ਨਿਸ਼ਕ੍ਰਿਆਕਰਣ ਤੋਂ ਬਚਾਉਂਦਾ ਹੈ।",how:"ਇਹ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ",s1t:"ਦੱਸੋ ਕੀ ਹੋਇਆ",s1d:"ਆਪਣੀ ਬੁਨਿਆਦੀ ਜਾਣਕਾਰੀ ਭਰੋ ਅਤੇ ਆਪਣੇ ਸ਼ਬਦਾਂ ਵਿੱਚ ਨਿਸ਼ਕ੍ਰਿਆਕਰਣ ਬਾਰੇ ਦੱਸੋ। ਲਗਭਗ 2 ਮਿੰਟ।",s2t:"ਸਕ੍ਰੀਨਸ਼ਾਟ ਅਪਲੋਡ ਕਰੋ",s2d:"ਵਿਕਲਪਿਕ ਪਰ ਸ਼ਕਤੀਸ਼ਾਲੀ। ਅਸੀਂ ਸਹੀ ਗਲਤੀ ਸੁਨੇਹਾ ਪੜ੍ਹਦੇ ਹਾਂ ਅਤੇ ਸਬੂਤ ਵਜੋਂ ਵਰਤਦੇ ਹਾਂ।",s3t:"ਕਾਨੂੰਨੀ ਪੱਤਰ ਪ੍ਰਾਪਤ ਕਰੋ",s3d:"NYC ਕਾਨੂੰਨ ਦਾ ਹਵਾਲਾ ਦਿੰਦੇ ਹੋਏ ਰਸਮੀ ਅਪੀਲ ਪੱਤਰ, ਬਹਾਲੀ ਅਤੇ ਬਕਾਇਆ ਤਨਖ਼ਾਹ ਦੀ ਮੰਗ ਨਾਲ।",ftitle:"ਆਪਣਾ ਅਪੀਲ ਪੱਤਰ ਬਣਾਓ",fsub:"* ਨਾਲ ਚਿੰਨ੍ਹਿਤ ਸਾਰੇ ਖੇਤਰ ਲਾਜ਼ਮੀ ਹਨ। ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਕਦੇ ਸੰਗ੍ਰਹਿਤ ਨਹੀਂ ਕੀਤੀ ਜਾਂਦੀ।",ln:"ਪੂਰਾ ਨਾਮ",lp:"ਪਲੇਟਫਾਰਮ",le:"ਈਮੇਲ ਪਤਾ",lph:"ਫ਼ੋਨ (ਵਿਕਲਪਿਕ)",lid:"ਕੂਰੀਅਰ / ਅਕਾਊਂਟ ID",ldt:"ਨਿਸ਼ਕ੍ਰਿਆਕਰਣ ਦੀ ਤਾਰੀਖ",lst:"ਕੀ ਹੋਇਆ — ਤੁਹਾਡਾ ਪੱਖ",lup:"ਨਿਸ਼ਕ੍ਰਿਆਕਰਣ ਦਾ ਸਕ੍ਰੀਨਸ਼ਾਟ (ਵਿਕਲਪਿਕ ਪਰ ਸਿਫ਼ਾਰਸ਼ੀ)",sp:"ਪਲੇਟਫਾਰਮ ਚੁਣੋ",so:"ਹੋਰ",phst:"ਉਦਾ. ਬਿਨਾਂ ਕਿਸੇ ਚੇਤਾਵਨੀ ਦੇ ਮੇਰਾ ਅਕਾਊਂਟ ਬੰਦ ਕਰ ਦਿੱਤਾ ਗਿਆ। ਮੇਰੀ 4.9 ਸਟਾਰ ਰੇਟਿੰਗ ਹੈ ਅਤੇ 1,400+ ਡਿਲਿਵਰੀਆਂ ਹਨ।",ut:"ਸਕ੍ਰੀਨਸ਼ਾਟ ਅਪਲੋਡ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ",us:"JPG, PNG, HEIC — ਬੈਨ ਸਕ੍ਰੀਨ ਦਾ ਕੋਈ ਵੀ ਸਕ੍ਰੀਨਸ਼ਾਟ",prt:"ਤੁਰੰਤ ਕਾਨੂੰਨੀ ਅਪੀਲ ਪੱਤਰ",prs:"ਫਾਰਮੈਟ ਕੀਤਾ, ਕਾਨੂੰਨੀ ਹਵਾਲਿਆਂ ਸਹਿਤ, ਭੇਜਣ ਲਈ ਤਿਆਰ",prn:"ਇੱਕ ਵਾਰੀ",bgen:"ਮੇਰਾ ਅਪੀਲ ਪੱਤਰ ਬਣਾਓ →",t1:"NYC LL 34 ਦਾ ਹਵਾਲਾ",t2:"ਬਕਾਇਆ ਤਨਖ਼ਾਹ ਦੀ ਮੰਗ",t3:"DCWP ਸ਼ਿਕਾਇਤ ਭਾਸ਼ਾ",t4:"ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨਿੱਜੀ ਰਹਿੰਦੀ ਹੈ",loading:"ਸੁਰੱਖਿਅਤ ਭੁਗਤਾਨ ਵੱਲ ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ…",otitle:"ਤੁਹਾਡਾ ਅਪੀਲ ਪੱਤਰ ਤਿਆਰ ਹੈ",bdl:".txt ਡਾਊਨਲੋਡ ਕਰੋ",bcopy:"ਪੱਤਰ ਕਾਪੀ ਕਰੋ",bcopysm:"ਕਾਪੀ",lbar:"⚖ ਰਸਮੀ ਅਪੀਲ — NYC LL 34 / 2026",brestart:"ਨਵਾਂ ਪੱਤਰ ਸ਼ੁਰੂ ਕਰੋ",foot:"NYC ਸਥਾਨਕ ਕਾਨੂੰਨ 34, 2026 ਤੇ ਆਧਾਰਿਤ ਜਾਣਕਾਰੀ ਸੰਦ। ਕਾਨੂੰਨੀ ਸਲਾਹ ਨਹੀਂ।",ereq:"ਕਿਰਪਾ ਕਰਕੇ ਸਾਰੇ ਲਾਜ਼ਮੀ ਖੇਤਰ (* ਨਾਲ ਚਿੰਨ੍ਹਿਤ) ਭਰੋ।",eapi:"ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ Support@fightbacknyc.net ਤੇ ਲਿਖੋ।",copied:"ਕਾਪੀ ਹੋ ਗਿਆ!"},
+tr:{badge:"NYC Yerel Yasa 34 · 2026",h1a:"Hesabınızı",h1b:"kapattılar.",h1c:"Geri alın.",hdesc:"2 dakikadan kısa sürede yasal itiraz mektubu oluşturun — platformlara ihlal başına 2.500 dolar ceza öngören NYC yasasına dayalı. Avukata gerek yok.",cta:"İtirazımı başlat",s1:"Haksız deaktivasyon başına ceza",s2:"Platformun size vermesi gereken bildirim",s3:"Haksız deaktivasyon halinde tam ücret alma hakkı",lt:"NYC Yerel Yasa 34, 2026",ld:"Uygulama tabanlı teslimat çalışanlarını ani ve açıklamasız hesap deaktivasyon işlemlerine karşı korur.",how:"Nasıl çalışır",s1t:"Ne olduğunu anlatın",s1d:"Temel bilgilerinizi doldurun ve deaktivasyonu kendi sözcüklerinizle anlatın. Yaklaşık 2 dakika.",s2t:"Ekran görüntüsü yükleyin",s2d:"İsteğe bağlı ama güçlü. Hata mesajını okuyoruz ve platforma karşı kanıt olarak kullanıyoruz.",s3t:"Yasal mektubunuzu alın",s3d:"NYC yasasını referans alan resmi itiraz mektubu, göreve iade ve birikmiş ücret talebiyle.",ftitle:"İtiraz mektubunuzu oluşturun",fsub:"* ile işaretli tüm alanlar zorunludur. Bilgileriniz asla saklanmaz.",ln:"Ad Soyad",lp:"Platform",le:"E-posta adresi",lph:"Telefon (isteğe bağlı)",lid:"Kurye / Hesap ID",ldt:"Deaktivasyon tarihi",lst:"Ne oldu — sizin tarafınız",lup:"Deaktivasyon bildirimi ekran görüntüsü (isteğe bağlı ama önerilir)",sp:"Platform seçin",so:"Diğer",phst:"Örn. Hesabım uyarı yapılmadan kapatıldı. 4,9 yıldız puanım ve 1.400+ teslimatım var. Hiç önceden uyarı almadım. Mesajda sadece şartları ihlal ettiniz yazıyordu, hiçbir ayrıntı verilmedi…",ut:"Ekran görüntüsü yüklemek için dokunun",us:"JPG, PNG, HEIC — yasak ekranının herhangi bir ekran görüntüsü",prt:"Anında Yasal İtiraz Mektubu",prs:"Biçimlendirilmiş, yasal referanslı, göndermeye hazır",prn:"tek seferlik",bgen:"İtiraz mektubumu oluştur →",t1:"NYC LL 34 referansı",t2:"Birikmiş ücret talebi",t3:"DCWP şikayet dili",t4:"Bilgileriniz gizli kalır",loading:"Güvenli ödemeye yönlendiriliyorsunuz…",otitle:"İtiraz mektubunuz hazır",bdl:".txt indir",bcopy:"Mektubu kopyala",bcopysm:"Kopyala",lbar:"⚖ RESMİ İTİRAZ — NYC YEREL YASA 34 / 2026",brestart:"Yeni mektup oluştur",foot:"NYC Yerel Yasa 34, 2026 esas alınarak hazırlanmış bilgi aracıdır. Hukuki tavsiye değildir.",ereq:"Lütfen tüm zorunlu alanları (* ile işaretli) doldurun.",eapi:"Bir şeyler ters gitti. Tekrar deneyin veya Support@fightbacknyc.net adresine yazın.",copied:"Kopyalandı!"}
 };
 
 let lang='en';
@@ -329,7 +604,6 @@ async function gen(){
   const btn=document.getElementById('sbtn');btn.disabled=true;
   document.getElementById('ls').style.display='block';
   try{
-    // Send form data to Netlify function → creates Stripe checkout session
     const res=await fetch('/.netlify/functions/create-checkout',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
@@ -337,7 +611,6 @@ async function gen(){
     });
     const data=await res.json();
     if(!res.ok||!data.url) throw new Error(data.error||'Could not start checkout');
-    // Redirect to Stripe-hosted checkout page
     window.location.href=data.url;
   }catch(e){
     document.getElementById('ls').style.display='none';
@@ -360,6 +633,97 @@ function dlLetter(){
   a.href=URL.createObjectURL(new Blob([letterText],{type:'text/plain'}));
   a.download='fightback-nyc-appeal.txt';a.click();
 }
+// ── FAQ TOGGLE ──
+function toggleFaq(item){
+  const body=item.querySelector(".faq-body");
+  const arrow=item.querySelector(".faq-arrow");
+  const isOpen=body.style.display==="block";
+  document.querySelectorAll(".faq-body").forEach(b=>b.style.display="none");
+  document.querySelectorAll(".faq-arrow").forEach(a=>{a.textContent="+";a.style.transform="rotate(0deg)";});
+  if(!isOpen){body.style.display="block";arrow.textContent="−";arrow.style.transform="rotate(180deg)";}
+}
+
+// ── CASE STRENGTH CHECKER ──
+const QUESTIONS=[
+  {q:"Did you receive a specific written reason for your deactivation?",yes:"They gave a reason",no:"It was vague or no reason given",scoreNo:25},
+  {q:"Did you receive any prior warnings or suspensions before being permanently deactivated?",yes:"Yes, I had warnings",no:"No warnings at all",scoreNo:25},
+  {q:"Have you been delivering for more than 6 months on this platform?",yes:"Yes",no:"Less than 6 months",scoreYes:15},
+  {q:"Do you have a rating above 4.5 stars or a strong delivery record?",yes:"Yes, strong record",no:"My record had issues",scoreYes:15},
+  {q:"Do you have a screenshot or record of the deactivation notice?",yes:"Yes I have proof",no:"No screenshot",scoreYes:20}
+];
+let answers=[];
+let currentQ=0;
+
+function startChecker(){
+  answers=[];currentQ=0;
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q=QUESTIONS[currentQ];
+  const pct=Math.round((currentQ/QUESTIONS.length)*100);
+  document.getElementById("checker-questions").innerHTML=`
+    <div style="background:#F6F3EE;border-radius:8px;height:6px;margin-bottom:24px;overflow:hidden">
+      <div style="background:#C0311A;height:100%;width:${pct}%;transition:width .4s;border-radius:8px"></div>
+    </div>
+    <div style="font-size:12px;color:#7C7670;margin-bottom:16px">Question ${currentQ+1} of ${QUESTIONS.length}</div>
+    <div style="font-weight:600;font-size:16px;margin-bottom:24px;line-height:1.5">${q.q}</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <button onclick="answerQ(true)" style="background:#F6F3EE;border:2px solid #DEDAD2;border-radius:10px;padding:14px 18px;text-align:left;cursor:pointer;font-family:DM Sans,sans-serif;font-size:14px;font-weight:500;transition:all .2s" onmouseover="this.style.borderColor='#C0311A';this.style.background='#FEF0EC'" onmouseout="this.style.borderColor='#DEDAD2';this.style.background='#F6F3EE'">${q.yes}</button>
+      <button onclick="answerQ(false)" style="background:#F6F3EE;border:2px solid #DEDAD2;border-radius:10px;padding:14px 18px;text-align:left;cursor:pointer;font-family:DM Sans,sans-serif;font-size:14px;font-weight:500;transition:all .2s" onmouseover="this.style.borderColor='#C0311A';this.style.background='#FEF0EC'" onmouseout="this.style.borderColor='#DEDAD2';this.style.background='#F6F3EE'">${q.no}</button>
+    </div>
+  `;
+  document.getElementById("checker-result").style.display="none";
+}
+
+function answerQ(isYes){
+  answers.push({q:currentQ,isYes});
+  currentQ++;
+  if(currentQ<QUESTIONS.length){renderQuestion();}
+  else{showResult();}
+}
+
+function showResult(){
+  let score=50;
+  answers.forEach(a=>{
+    const q=QUESTIONS[a.q];
+    if(a.isYesfunction resetF(){function resetF(){q.scoreYes) score+=q.scoreYes;
+    if(!a.isYesfunction resetF(){function resetF(){q.scoreNo) score+=q.scoreNo;
+    if(a.isYesfunction resetF(){function resetF(){q.scoreNo) score-=Math.floor(q.scoreNo*0.5);
+  });
+  score=Math.min(98,Math.max(25,score));
+  let strength,color,msg,cta;
+  if(score>=80){strength="VERY STRONG";color="#1A7A3C";msg="Your case has multiple strong indicators of a wrongful deactivation. The platform likely violated the 72-hour notice rule and/or the progressive discipline requirement. A formal legal letter is highly recommended.";cta="Build my appeal letter now";}
+  else if(score>=55){strength="STRONG";color="#B8913A";msg="Your case has solid grounds. The platform may have violated NYC Local Law 34 in one or more ways. A formal appeal letter citing the exact statutes will create real legal pressure.";cta="Build my appeal letter";}
+  else{strength="MODERATE";color="#C0311A";msg="Your case has some grounds but the platform may have a defense. A legal letter still puts you in the best possible position and costs far less than doing nothing.";cta="Build my letter anyway";}
+  document.getElementById("checker-questions").style.display="none";
+  document.getElementById("checker-result").style.display="block";
+  document.getElementById("checker-result").innerHTML=`
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="font-size:13px;font-weight:600;color:#7C7670;margin-bottom:8px">Your case strength</div>
+      <div style="font-family:DM Serif Display,serif;font-size:52px;color:${color};line-height:1;margin-bottom:8px">${score}%</div>
+      <div style="display:inline-block;background:${color};color:white;border-radius:20px;padding:4px 16px;font-size:12px;font-weight:700;letter-spacing:.08em">${strength}</div>
+    </div>
+    <div style="background:#F6F3EE;border-radius:10px;padding:16px 18px;font-size:14px;color:#4A4A4A;line-height:1.65;margin-bottom:24px">${msg}</div>
+    <button onclick="closeChecker();document.getElementById('fa').scrollIntoView({behavior:'smooth'})" style="width:100%;background:#C0311A;color:white;border:none;border-radius:10px;font-family:DM Sans,sans-serif;font-size:15px;font-weight:600;padding:16px;cursor:pointer">${cta} →</button>
+    <button onclick="startChecker()" style="width:100%;background:none;border:none;font-family:DM Sans,sans-serif;font-size:13px;color:#7C7670;text-decoration:underline;cursor:pointer;margin-top:12px;padding:4px">Retake the quiz</button>
+  `;
+}
+
+function closeChecker(){
+  document.getElementById("checker-modal").style.display="none";
+  document.getElementById("checker-questions").style.display="block";
+  document.getElementById("checker-questions").innerHTML="";
+  document.getElementById("checker-result").style.display="none";
+  currentQ=0;answers=[];
+}
+
+// Auto start checker when modal opens
+document.getElementById("checker-modal").addEventListener("transitionend",function(){});
+const origOpen=document.getElementById("checker-modal").style;
+const checkerBtn=document.querySelector("[onclick*=checker-modal]");
+if(checkerBtn){checkerBtn.addEventListener("click",()=>{setTimeout(startChecker,50);});}
+
 function resetF(){
   document.getElementById('ow').style.display='none';
   window.scrollTo({top:0,behavior:'smooth'});
