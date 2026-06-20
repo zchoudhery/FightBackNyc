@@ -23,6 +23,11 @@ exports.handler = async (event) => {
     };
   }
 
+  // Determine the base URL reliably
+  const host = event.headers["x-forwarded-host"] || event.headers.host || "fightbacknyc.net";
+  const proto = event.headers["x-forwarded-proto"] || "https";
+  const baseUrl = `${proto}://${host}`;
+
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -32,7 +37,8 @@ exports.handler = async (event) => {
             currency: "usd",
             product_data: {
               name: "FightBack NYC — Legal Appeal Letter",
-              description: "Formal appeal letter citing NYC Local Law 34 of 2026. Delivered instantly after payment.",
+              description:
+                "Formal appeal letter based on NYC delivery worker protections. Delivered instantly after payment.",
               images: [],
             },
             unit_amount: 1500,
@@ -41,8 +47,8 @@ exports.handler = async (event) => {
         },
       ],
       mode: "payment",
-      success_url: `${event.headers.origin}/generating.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${event.headers.origin}/index.html?cancelled=true`,
+      success_url: `${baseUrl}/generating.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/index.html?cancelled=true`,
       customer_email: email,
       metadata: {
         name,
