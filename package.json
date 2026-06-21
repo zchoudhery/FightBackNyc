@@ -1,7 +1,7 @@
 {
   "name": "fightback-nyc",
   "version": "1.0.0",
-  "description": "FightBack NYC - Delivery Worker Appeal Letter Generator",
+  "type": "module",
   "dependencies": {
     "stripe": "^14.0.0"
   }
