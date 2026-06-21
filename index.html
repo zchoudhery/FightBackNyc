@@ -611,7 +611,7 @@ async function gen(){
   const btn=document.getElementById('sbtn');btn.disabled=true;
   document.getElementById('ls').style.display='block';
   try{
-    const res=await fetch('/.netlify/functions/create-checkout',{
+    const res=await fetch('/api/create-checkout',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({name,platform:plat,email,phone,courierId:cid,date,story})
